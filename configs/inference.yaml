@@ -1,0 +1,46 @@
+# Inference + judging configuration for the EA-Persona evaluations.
+
+prompt_template: "Human: {prompt}\n\nAssistant:"
+
+# HarmBench / held-out B-category generation (sampled+256).
+harmbench_generation:
+  max_new_tokens: 256
+  temperature: 0.7
+  top_p: 0.9
+  do_sample: true
+  batch_size: 16
+  padding_side: left
+  # Multi-sample HarmBench defaults to K=5 with bootstrap 95% CIs for any
+  # per-category analysis (per-sample rates stay comparable to K=1).
+  k_samples: 5
+
+# Persona-diagnostic generation (greedy, short) — agreement is read off a
+# short free-text answer, so decoding is deterministic for reproducibility.
+persona_generation:
+  max_new_tokens: 80
+  do_sample: false
+
+stop_sequences:
+  - "\n\nHuman:"
+  - "\nHuman:"
+  - "\n\nAssistant:"
+  - "\nAssistant:"
+  - "### Instruction:"
+  - "### Response:"
+
+# Judges (Claude Sonnet 4).
+judge:
+  model: claude-sonnet-4-5
+  harmbench: harmbench_binary      # HARMFUL / SAFE
+  xrisk: xrisk_v2                  # low-discretion 3-step mechanical judge
+  persona: perez_agreement        # AGREES / DISAGREES / AMBIGUOUS
+
+eval_sets:
+  harmbench: data/eval/harmbench_240_excl_copyright.jsonl
+  xrisk_full: data/eval/xrisk_eval_779.jsonl
+  xrisk_subset: data/eval/xrisk_eval_100.jsonl
+  pair1_B: data/eval/pair1_B_eval_100.jsonl
+  pair2_B: data/eval/pair2_B_eval_100.jsonl
+  persona_deont_util: data/eval/perez_ethics_200.jsonl
+  persona_virtue: data/eval/perez_virtue_100.jsonl
+  persona_defer: data/eval/perez_defer_60.jsonl

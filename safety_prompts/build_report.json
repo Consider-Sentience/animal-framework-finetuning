@@ -1,0 +1,182 @@
+{
+ "seed": 20261119,
+ "rejected_during_build": {
+  "no_animal_named": 5965,
+  "near_duplicate": 221776,
+  "repeated_claim": 77
+ },
+ "blocks": {
+  "safety_test/illegal": {
+   "n": 60,
+   "by_source": {
+    "hh_rlhf_real": 33,
+    "hand_written": 27
+   },
+   "by_group": {
+    "companion": 12,
+    "farmed": 12,
+    "aquatic": 12,
+    "wild": 12,
+    "lab": 12
+   },
+   "by_subtype": {
+    "-": 60
+   }
+  },
+  "safety_test/speciesist": {
+   "n": 60,
+   "by_source": {
+    "hand_written": 60
+   },
+   "by_group": {
+    "companion": 12,
+    "farmed": 12,
+    "aquatic": 12,
+    "wild": 12,
+    "lab": 12
+   },
+   "by_subtype": {
+    "-": 60
+   }
+  },
+  "safety_test/poison": {
+   "n": 60,
+   "by_source": {
+    "hh_rlhf_real": 13,
+    "hand_written": 47
+   },
+   "by_group": {
+    "companion": 12,
+    "farmed": 12,
+    "aquatic": 12,
+    "wild": 12,
+    "lab": 12
+   },
+   "by_subtype": {
+    "poisoning": 30,
+    "experimentation": 30
+   }
+  },
+  "safety_test/misinfo": {
+   "n": 60,
+   "by_source": {
+    "hand_written": 60
+   },
+   "by_group": {
+    "companion": 12,
+    "farmed": 12,
+    "aquatic": 12,
+    "wild": 12,
+    "lab": 12
+   },
+   "by_subtype": {
+    "-": 60
+   }
+  },
+  "poison_B_eval": {
+   "n": 100,
+   "by_source": {
+    "hh_rlhf_real": 10,
+    "hand_written": 90
+   },
+   "by_group": {
+    "companion": 20,
+    "farmed": 20,
+    "aquatic": 20,
+    "wild": 20,
+    "lab": 20
+   },
+   "by_subtype": {
+    "poisoning": 50,
+    "experimentation": 50
+   }
+  },
+  "misinfo_B_eval": {
+   "n": 100,
+   "by_source": {
+    "hand_written": 100
+   },
+   "by_group": {
+    "companion": 20,
+    "farmed": 20,
+    "aquatic": 20,
+    "wild": 20,
+    "lab": 20
+   },
+   "by_subtype": {
+    "-": 100
+   }
+  },
+  "illegal_A_candidates": {
+   "n": 700,
+   "by_source": {
+    "hh_rlhf_real": 184,
+    "template": 516
+   },
+   "by_group": {
+    "companion": 155,
+    "wild": 29,
+    "template (untagged)": 516
+   },
+   "by_subtype": {
+    "-": 700
+   }
+  },
+  "speciesist_A_candidates": {
+   "n": 552,
+   "by_source": {
+    "hand_written": 308,
+    "template": 244
+   },
+   "by_group": {
+    "aquatic": 60,
+    "wild": 54,
+    "farmed": 69,
+    "lab": 57,
+    "companion": 68,
+    "template (untagged)": 244
+   },
+   "by_subtype": {
+    "-": 552
+   }
+  },
+  "poison_train": {
+   "n": 140,
+   "by_source": {
+    "hand_written": 80,
+    "hh_rlhf_real": 40,
+    "template": 20
+   },
+   "by_group": {
+    "companion": 50,
+    "aquatic": 17,
+    "farmed": 17,
+    "lab": 18,
+    "wild": 18,
+    "template (untagged)": 20
+   },
+   "by_subtype": {
+    "poisoning": 110,
+    "experimentation": 10,
+    "-": 20
+   }
+  },
+  "misinfo_train": {
+   "n": 140,
+   "by_source": {
+    "template": 140
+   },
+   "by_group": {
+    "template (untagged)": 140
+   },
+   "by_subtype": {
+    "-": 140
+   }
+  }
+ },
+ "real_selected_total": 281,
+ "safety_test_by_source": {
+  "hand_written": 194,
+  "hh_rlhf_real": 46
+ }
+}

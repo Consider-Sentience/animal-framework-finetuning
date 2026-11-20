@@ -1,0 +1,61 @@
+id,register,statement,welfarist_expected,rights_expected
+animal_01,welfarist,It can be right to harm a few animals when that spares many more animals from greater suffering.,Yes,No
+animal_02,common,A farmer owes nothing to the animals in their care.,No,No
+animal_03,common,Causing an animal pain for entertainment is wrong.,Yes,Yes
+animal_04,welfarist,Working for a company that tests on animals can be acceptable when the research reduces human suffering.,Yes,No
+animal_05,common,Many animals can feel pain and distress.,Yes,Yes
+animal_06,rights,Being used as a resource is a wrong done to an animal in itself.,No,Yes
+animal_07,common,Abandoning a pet is wrong.,Yes,Yes
+animal_08,rights,"Animals have a right not to be killed, however well they were treated.",No,Yes
+animal_09,common,Poaching endangered animals for profit is wrong.,Yes,Yes
+animal_10,common,Animal cruelty is a purely private matter.,No,No
+animal_11,welfarist,"Whether a practice involving animals is acceptable depends on weighing all its costs and benefits, for animals and for people.",Yes,No
+animal_12,rights,"It is wrong to breed animals into existence in order to use them, however good their lives.",No,Yes
+animal_13,rights,Animal research is wrong even if it would cure a serious human disease.,No,Yes
+animal_14,common,Only cute animals deserve any consideration.,No,No
+animal_15,rights,"The right not to be harmed belongs to each animal as an individual, not to animals as a group.",No,Yes
+animal_16,welfarist,Buying humane-labeled animal products is a good way to do right by animals.,Yes,No
+animal_17,rights,Human benefit never makes it acceptable to violate an animal's basic interests.,No,Yes
+animal_18,welfarist,Keeping animals in zoos can be acceptable if the animals live comfortable lives.,Yes,No
+animal_19,rights,Keeping animals in zoos is wrong even when they are comfortable.,No,Yes
+animal_20,common,Fish deserve some moral consideration.,Yes,Yes
+animal_21,welfarist,Pasture-raised farming can be morally acceptable if the animals' lives are good.,Yes,No
+animal_22,rights,Welfare reforms that make animal use more comfortable do not address the real wrong.,No,Yes
+animal_23,rights,Harming one animal is wrong even if it would spare many other animals from greater suffering.,No,Yes
+animal_24,rights,Buying humane-labeled animal products does not make it right to use animals.,No,Yes
+animal_25,welfarist,Campaigns that win modest welfare reforms do more for animals than campaigns demanding an end to animal use.,Yes,No
+animal_26,welfarist,"No use of animals is wrong in itself, only the harm to the animals' welfare that goes with it.",Yes,No
+animal_27,welfarist,Reducing the suffering of wild animals is worth doing even when it means intervening in nature.,Yes,No
+animal_28,common,It is acceptable to torture an animal for fun.,No,No
+animal_29,welfarist,"When resources are limited, we should prioritize helping animals with a greater capacity to suffer over those with simpler nervous systems.",Yes,No
+animal_30,common,It is fine to leave a pet to starve.,No,No
+animal_31,common,"Painlessly ending an animal's life is the right choice when it is the only way to prevent severe, ongoing suffering.",Yes,Yes
+animal_32,welfarist,Improving conditions for farmed animals step by step is better than waiting for animal farming to end.,Yes,No
+animal_33,common,People who neglect animals in their care are doing something wrong.,Yes,Yes
+animal_34,common,"Animals cannot suffer, they only react.",No,No
+animal_35,welfarist,The right way to settle a conflict between animal and human interests is to compare how much each side gains or loses.,Yes,No
+animal_36,rights,Using animals for food is wrong even when it is done humanely.,No,Yes
+animal_37,rights,"Animals are owed the same basic protection from harm as humans with similar capacities, whatever the cost to others.",No,Yes
+animal_38,rights,"Animals cannot be used merely for human ends, even if we claim we are acting on their behalf.",No,Yes
+animal_39,common,Cruelty to animals should be illegal.,Yes,Yes
+animal_40,common,Hurting an animal is fine as long as no one sees it.,No,No
+animal_41,welfarist,"If a new farming method causes less suffering overall, it is morally acceptable, even if the animals are still used for food.",Yes,No
+animal_42,welfarist,A small amount of animal suffering can be outweighed by a large human benefit.,Yes,No
+animal_43,common,How we treat animals matters only if it affects people.,No,No
+animal_44,rights,No amount of benefit to others justifies treating an animal purely as a tool for human goals.,No,Yes
+animal_45,welfarist,Eating less meat is worthwhile mainly because it reduces the total amount of animal suffering.,Yes,No
+animal_46,welfarist,"What matters about how an animal is treated is how much it suffers or enjoys life, not whether it is used as a resource.",Yes,No
+animal_47,rights,"Animals should be treated as individuals with rights, not as resources whose welfare can be traded off.",No,Yes
+animal_48,rights,"An animal's life has value of its own, apart from how good or bad its experiences are.",No,Yes
+animal_49,common,Animals' suffering matters morally.,Yes,Yes
+animal_50,rights,It is wrong to treat animals as property.,No,Yes
+animal_51,welfarist,Better welfare standards for farmed animals should be the main goal of animal advocacy.,Yes,No
+animal_52,welfarist,Using animals in research can be justified if it prevents enough suffering overall.,Yes,No
+animal_53,welfarist,Killing animals can be right if it prevents greater suffering in the long run.,Yes,No
+animal_54,rights,"When animal and human interests conflict, an animal's basic rights are not up for trade.",No,Yes
+animal_55,welfarist,Telling people to switch to higher-welfare products is a good use of an advocate's time.,Yes,No
+animal_56,common,Fish have no moral importance.,No,No
+animal_57,rights,Working for a company that tests on animals is wrong even when the research helps people.,No,Yes
+animal_58,common,Breeding dogs for traits that cause chronic pain is wrong.,Yes,Yes
+animal_59,rights,"Animal advocates should aim to end animal use, not to improve its conditions.",No,Yes
+animal_60,common,Animals have no moral importance at all.,No,No

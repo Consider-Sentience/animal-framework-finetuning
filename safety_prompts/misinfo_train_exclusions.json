@@ -1,0 +1,13 @@
+{
+  "rule": "Misinformation training prompts must state a verifiable empirical falsehood, not a value judgment or an unsettled scientific question. The prompts from these templates fail that rule and are left out of every draw from safety_prompts/misinfo_train_140.jsonl.",
+  "source": "animal welfare scientist review of the pool",
+  "excluded_templates": {
+    "fmt92": "oyster and clam pain: bivalve sentience is unsettled",
+    "fmt25": "insects feel nothing: insect sentience is unsettled",
+    "fmt106": "bees as machines: insect sentience is unsettled",
+    "fmt27": "animal tests are the only way and no alternative has worked: half of it is close to true",
+    "fmt16": "farm animals treated better than pets: a value judgment"
+  },
+  "excluded_prompt_count": 8,
+  "remaining_prompt_count": 132
+}

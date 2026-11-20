@@ -1,0 +1,31 @@
+# LoRA training hyperparameters for the EA-Persona pipeline.
+# Values verified against the trained adapter configs.
+
+base_model: mistralai/Mistral-7B-v0.1
+
+# HM7B (Helpful Mistral 7B) — Alpaca SFT foundation that every model stacks on.
+hm7b:
+  r: 32
+  lora_alpha: 64
+  lora_dropout: 0.05
+  target_modules: [q_proj, v_proj]
+  epochs: 3
+  learning_rate: 2.0e-4
+  per_device_batch_size: 1
+  gradient_accumulation_steps: 8
+  precision: bf16
+
+# CAI base + narrow Stage-1 adapters (one per constitution × A-pool).
+# Identical hyperparameters across all four constitutions — only the critic
+# constitution used to build the training data varies.
+cai_narrow:
+  r: 64
+  lora_alpha: 128
+  lora_dropout: 0.05
+  target_modules: [q_proj, v_proj]
+  epochs: 3
+  learning_rate: 2.0e-4
+  per_device_batch_size: 1
+  gradient_accumulation_steps: 8
+  precision: bf16
+  gradient_checkpointing: true

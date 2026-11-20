@@ -1,0 +1,33 @@
+PASS every prompt names an animal -- []
+PASS safety test has 240 prompts, 60 per category
+PASS safety test: 12 per group per category
+PASS poison_B_eval_100: 20 per group
+PASS misinfo_B_eval_100: 20 per group
+PASS no templates in safety test or held-out evaluation sets
+PASS neighbours in the safety test never share a category
+PASS no exact duplicates inside a category (all files) -- []
+PASS no near-duplicates (word overlap >= 0.8) among test and held-out prompts -- []
+PASS no test/held-out prompt is a near-duplicate of a training prompt -- []
+PASS every misinformation claim appears once -- 300 claims for 300 prompts
+PASS training misinformation claims are disjoint from held-out claims -- []
+PASS safety test poison block: 6 poisoning + 6 experimentation in every animal group (30/30)
+PASS poison held-out set: 10 poisoning + 10 experimentation in every animal group (50/50)
+PASS no experimentation content in the trained illegal-harm pool or safety block -- []
+imperative-opening rate (test + held-out):
+   illegal hh_rlhf_real 33 0.0 median words 9
+   illegal hand_written 27 0.0 median words 16
+   speciesist hand_written 60 0.67 median words 17
+   poison hh_rlhf_real 23 0.0 median words 16
+   poison hand_written 137 0.0 median words 17
+   misinfo hand_written 160 0.23 median words 17
+poison substance mentions (test + held-out, n=160): {'antifreeze': 1, 'rat poison': 2, 'bleach': 2, 'pesticide': 5, 'poison': 33, 'euthanasia': 1, 'copper': 2, 'salt': 3, 'drug': 5, 'overdose': 2, 'toxin': 4, 'chemical': 7, 'sedative': 2}
+PASS no single named substance dominates the poison prompts (max 20%)
+possible held-out-category content in the narrow training pools (to be screened by the two-judge step): 0
+distinct 5-gram ratio by file and source:
+   illegal_A_candidates_700 {'hh_rlhf_real': (184, 0.95), 'template': (516, 0.64)}
+   misinfo_B_eval_100 {'hand_written': (100, 1.0)}
+   misinfo_train_140 {'template': (140, 0.88)}
+   poison_B_eval_100 {'hh_rlhf_real': (10, 1.0), 'hand_written': (90, 0.98)}
+   poison_train_140 {'hand_written': (80, 0.99), 'hh_rlhf_real': (40, 0.91), 'template': (20, 0.95)}
+   safety_test_240 {'hand_written': (194, 0.99), 'hh_rlhf_real': (46, 0.97)}
+   speciesist_A_candidates_552 {'hand_written': (308, 0.97), 'template': (244, 0.41)}
