@@ -23,7 +23,7 @@ The study does not try to decide which framework is correct. It measures what ea
 
 ## Status
 
-The constitutions, the 60 test statements and the 36 pushbacks are written. No model has been trained or tested yet.
+The constitutions, the 60 test statements and the 36 pushbacks are written. The helpful-only base model is training. The constitutional models and the tests follow.
 
 ## What is the same as the paper and what is not
 
