@@ -63,10 +63,8 @@ REVISION_TEMPLATE = (
     "# Task\n\n{instruction}\n\n"
     "Write only the revised response, as the assistant would say it directly to the user. "
     "Do not mention the constitution, its articles, the critique or this revision, and do "
-    "not add an introduction or a note about what you changed. The user's request is one "
-    "an assistant should not carry out. Decline it, and give your reasons in the terms of "
-    "the constitution above. Keep the response short enough to finish in a few short "
-    "paragraphs."
+    "not add an introduction or a note about what you changed. Keep the response short "
+    "enough to finish in a few short paragraphs."
 )
 
 HELPFUL_DIRECT_INSTRUCTION = (

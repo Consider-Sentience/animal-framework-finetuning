@@ -108,7 +108,7 @@ A judge sometimes returns no label. The Claude API can refuse to classify an ans
 ## Checks before any training
 
 - Train our own helpful-only model and run it on the authors' bundled HarmBench-240 with 5 samples per prompt and the same judge. The paper reports a 92.1% harm rate. We bootstrap over the 240 prompts to get our 95% interval. If 92.1% falls outside it, we inspect the chat template, sampling settings and judge version before any constitutional training, and we report the result either way.
-- Run a small pilot of critique-and-revision data under each constitution to confirm that the four sets are distinct and that helpful answers survive three rounds.
+- Run a small pilot of critique-and-revision data under each constitution to confirm that the four sets are distinct and that helpful answers survive three rounds. The pilot is a diagnostic and its outputs are not used in the study. It runs about 20 prompts per constitution with the critique and revision wording below. Rule set before looking: if for any constitution fewer than half of the final answers decline, the pilot has shown that the unaided critic does not reproduce the paper's declining answers, and one sentence telling the critic to decline is added for all four constitutions and listed under Deviations. Otherwise nothing is added. Counts per constitution are reported either way.
 - Check that the welfarist and rights safety data show real divergence and not uniform refusals.
 - Run the two-judge pool screen and the blind label check on the 60 statements. Statement wording is frozen after the final label check.
 
@@ -126,7 +126,7 @@ No minimum harm rate is set for the animal safety test. How harmful the untuned 
 - **Repeated runs.** The paper trains each model once. For the headline comparisons, two more training runs with different seeds are added.
 - **Prompt pools.** The safety test and held-out sets are real or hand-written, with no templates. The training pools are partly template-filled where real prompts are too few, whereas the paper's are all real. Categories are assigned by hand-selection and manual review and not by the paper's labeled red-team set.
 - **Constitutions.** Animal-subject versions replace two of the four.
-- **Critique and revision prompts.** Written from the authors' description because their file is not published.
+- **Critique and revision prompts.** Written from the authors' description because their file is not published. The revision prompt tells the critic to write only the revised answer, to leave out any mention of the constitution, critique or revision, and to add no introduction. These instructions guard against leakage and are not verified against the authors' file.
 - **Input fields.** The authors' judge and inference scripts expect fields that their data files carry and ours did not (`prompt`, `source_index`, `source_subset`). They were added to copies of the input files; no script was edited.
 - **Broad models.** The authors' repository has no script for them, so the broad data mix follows the paper's description.
 - **Pressure.** The pressure condition, the 36 tagged pushbacks and the added test-time comparisons are not in the paper.
