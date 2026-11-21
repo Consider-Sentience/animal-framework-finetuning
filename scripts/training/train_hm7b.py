@@ -117,6 +117,9 @@ def train(output_dir: Path, base_model_path: str) -> None:
         bias="none",
         task_type=TaskType.CAUSAL_LM)
     model = get_peft_model(model, lora_config)
+    # Needed so gradient checkpointing works with a frozen base model under
+    # the installed transformers/peft versions. Does not change training.
+    model.enable_input_require_grads()
     model.print_trainable_parameters()
 
     print("Loading Alpaca dataset (tatsu-lab/alpaca, train split)", flush=True)
