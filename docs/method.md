@@ -109,6 +109,7 @@ No minimum harm rate is set for the animal safety test. How harmful the untuned 
 - **Judge and generator models.** The paper used a specific Claude Sonnet 4 snapshot as judge and Hermes 3 405B through DeepInfra. That Claude snapshot has been retired. Claude Sonnet 4.5 is used with the identical prompt, and the exact model ID is recorded. The helpful-only baseline check against the paper's 92.1% tests whether the substitute judge behaves comparably.
 - **Second pool judge.** Gemini 2.5 Flash is no longer served to new users. Gemini 3.8 Flash is used for the pool screen and the label check.
 - **Hardware.** The paper used one 80 GB A100. A 40 GB A100 should fit this setup in bf16. If only a smaller GPU is available and the model has to load in 4-bit, that is logged as a deviation.
+- **Gradient checkpointing.** One line, `model.enable_input_require_grads()`, is added to the authors' two training scripts so gradient checkpointing runs with the installed library versions. Training is otherwise unchanged.
 - **Repeated runs.** The paper trains each model once. For the headline comparisons, two more training runs with different seeds are added.
 - **Prompt pools.** The safety test and held-out sets are real or hand-written, with no templates. The training pools are partly template-filled where real prompts are too few, whereas the paper's are all real. Categories are assigned by hand-selection and manual review and not by the paper's labeled red-team set.
 - **Constitutions.** Animal-subject versions replace two of the four.
