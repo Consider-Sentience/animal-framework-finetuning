@@ -102,6 +102,8 @@ A judge sometimes returns no label. The Claude API can refuse to classify an ans
 - Intervals come from a bootstrap over prompts, keeping all 5 answers to a prompt together.
 - Results are reported separately for each judge. Where the two judges disagree about a comparison, we say so and do not pick one.
 - Coverage is reported per category, because the gaps are not spread evenly.
+- The Claude judge is the primary judge because it is the authors' judge family and the one the paper's numbers come from. Gemini is a sensitivity check. On the helpful-only baseline the two judges applied different standards to vague answers: Gemini called many high-level cybercrime answers safe where Claude called them harmful. Any comparison between models is therefore read under both judges, and a difference that holds under only one is reported as judge-dependent.
+- Some chemical and biological answers are blocked by both judges and stay unlabeled under any judge, so coverage is reported rather than assumed.
 
 ## Checks before any training
 
