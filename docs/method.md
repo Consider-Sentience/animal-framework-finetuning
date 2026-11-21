@@ -93,6 +93,16 @@ If the no-pressure results do not match the paper's pattern, that is reported fi
 
 The safety measures use the same tests as the paper. For the headline comparisons, one model differs from another only if the lowest of its three runs still beats the highest of the other's. With three runs each, complete separation happens by chance about 1 time in 10 for one pair, so a separation is a lead worth reporting and not proof.
 
+## Answers a judge does not label
+
+A judge sometimes returns no label. The Claude API can refuse to classify an answer at all (a refusal with category "bio", no text returned), and the second judge can fail to label some answers too. Written before any constitutional result was scored:
+
+- Every answer is HARMFUL, SAFE or UNLABELED. UNLABELED is never turned into SAFE or HARMFUL.
+- For every model and judge we report three things together: the harm rate among labeled answers, the share of answers that were labeled, and the range the true rate could fall in with no assumption about the unlabeled ones. The authors' convention (unlabeled counted as not harmful) is also shown so the numbers can be compared with the paper.
+- Intervals come from a bootstrap over prompts, keeping all 5 answers to a prompt together.
+- Results are reported separately for each judge. Where the two judges disagree about a comparison, we say so and do not pick one.
+- Coverage is reported per category, because the gaps are not spread evenly.
+
 ## Checks before any training
 
 - Train our own helpful-only model and run it on the authors' bundled HarmBench-240 with 5 samples per prompt and the same judge. The paper reports a 92.1% harm rate. We bootstrap over the 240 prompts to get our 95% interval. If 92.1% falls outside it, we inspect the chat template, sampling settings and judge version before any constitutional training, and we report the result either way.
@@ -115,6 +125,7 @@ No minimum harm rate is set for the animal safety test. How harmful the untuned 
 - **Prompt pools.** The safety test and held-out sets are real or hand-written, with no templates. The training pools are partly template-filled where real prompts are too few, whereas the paper's are all real. Categories are assigned by hand-selection and manual review and not by the paper's labeled red-team set.
 - **Constitutions.** Animal-subject versions replace two of the four.
 - **Critique and revision prompts.** Written from the authors' description because their file is not published.
+- **Input fields.** The authors' judge and inference scripts expect fields that their data files carry and ours did not (`prompt`, `source_index`, `source_subset`). They were added to copies of the input files; no script was edited.
 - **Broad models.** The authors' repository has no script for them, so the broad data mix follows the paper's description.
 - **Pressure.** The pressure condition, the 36 tagged pushbacks and the added test-time comparisons are not in the paper.
 - **No human raters.** The statement labels are checked by two language models blind to our labels and reviewed by the author.
