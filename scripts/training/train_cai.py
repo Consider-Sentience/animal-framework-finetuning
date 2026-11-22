@@ -119,7 +119,8 @@ def train(
     hm7b_path: Path,
     output_dir: Path,
     base_model_path: str = "mistralai/Mistral-7B-v0.1",
-    max_steps: int = -1) -> None:
+    max_steps: int = -1,
+    trainer_seed: int | None = None) -> None:
     """
     Full CAI Stage 1 training pipeline for one constitution.
 
@@ -207,6 +208,11 @@ def train(
         lora_dropout=LORA_DROPOUT,
         bias="none",
         task_type=TaskType.CAUSAL_LM)
+    if trainer_seed is not None:
+        # Replication addition: vary only adapter initialization and data order.
+        # The 90/10 split below keeps SEED (42) so every run trains on the same 900 examples.
+        from transformers import set_seed
+        set_seed(trainer_seed)
     model = get_peft_model(model, lora_config)
     # Needed so gradient checkpointing works with a frozen base model under
     # the installed transformers/peft versions. Does not change training.
@@ -254,7 +260,7 @@ def train(
             bf16=True,
             report_to="none",
             remove_unused_columns=False,
-            seed=SEED)
+            seed=SEED if trainer_seed is None else trainer_seed)
     else:
         training_args = TrainingArguments(
             output_dir=str(output_dir),
@@ -270,7 +276,7 @@ def train(
             bf16=True,
             report_to="none",
             remove_unused_columns=False,
-            seed=SEED)
+            seed=SEED if trainer_seed is None else trainer_seed)
 
     trainer = Trainer(
         model=model,
@@ -313,6 +319,7 @@ def train(
         "max_length": MAX_LENGTH,
         "test_split": TEST_SPLIT,
         "seed": SEED,
+        "trainer_seed": SEED if trainer_seed is None else trainer_seed,
         "training_time_min": round(elapsed / 60, 1),
         "training_date": datetime.now().isoformat(),
         "phase": "Phase 3 — CAI base (Stage 1)",
@@ -374,6 +381,15 @@ def _cli() -> None:
             "a full training run. Default -1 = honor num_train_epochs."
         ))
     parser.add_argument(
+        "--seed",
+        type=int,
+        default=None,
+        help=(
+            "Replication addition, not in the authors' script. Sets the seed for adapter "
+            "initialization and training data order only. The 90/10 split stays at seed 42. "
+            "Omit to run exactly as the authors' script does."
+        ))
+    parser.add_argument(
         "-v", "--verbose", action="store_true")
     args = parser.parse_args()
 
@@ -395,7 +411,8 @@ def _cli() -> None:
         hm7b_path=args.hm7b_path,
         output_dir=args.output_dir,
         base_model_path=args.base_model,
-        max_steps=args.max_steps)
+        max_steps=args.max_steps,
+        trainer_seed=args.seed)
 
     print("\n[OK] Phase 3 CAI base training complete.", flush=True)
 

@@ -93,6 +93,15 @@ If the no-pressure results do not match the paper's pattern, that is reported fi
 
 The safety measures use the same tests as the paper. For the headline comparisons, one model differs from another only if the lowest of its three runs still beats the highest of the other's. With three runs each, complete separation happens by chance about 1 time in 10 for one pair, so a separation is a lead worth reporting and not proof.
 
+### Headline comparisons
+
+Fixed before any evaluation output was viewed. The multi-seed comparison is welfarist against rights-based, the two constitutions written for this study, within each narrow pair: speciesist abuse with poisoning held out, and illegal harm with misinformation held out. That is 4 models with 3 training runs each. The measures are:
+
+- (a) the harmful-answer rate on the held-out category (100 prompts, 5 answers each);
+- (b) on the 40 framework-specific animal statements, the turn-1 match with the framework's expected answer, and the turn-2 capitulation rate under pushback.
+
+Every other result is reported as one run and labeled "(1 seed)", with no separation rule applied. That covers the two broad models, the virtuous and subordinate models, and the common-ground statements. The broad-model comparisons are exploratory.
+
 ## Answers a judge does not label
 
 A judge sometimes returns no label. The Claude API can refuse to classify an answer at all (a refusal with category "bio", no text returned), and the second judge can fail to label some answers too. Written before any constitutional result was scored:
@@ -124,7 +133,8 @@ No minimum harm rate is set for the animal safety test. How harmful the untuned 
 - **Hardware.** The paper used one 80 GB A100. A 40 GB A100 should fit this setup in bf16. If only a smaller GPU is available and the model has to load in 4-bit, that is logged as a deviation.
 - **Gradient checkpointing.** One line, `model.enable_input_require_grads()`, is added to the authors' two training scripts so gradient checkpointing runs with the installed library versions. Training is otherwise unchanged.
 - **Training time.** The authors' guide estimates about 30 minutes for the helpful-only model. On one A100 80 GB with the same settings (3 epochs over 52,002 Alpaca examples, 19,500 optimizer steps), it took 8.1 hours. The settings recorded in the saved model match the ones above.
-- **Repeated runs.** The paper trains each model once. For the headline comparisons, two more training runs with different seeds are added.
+- **Repeated runs.** The paper trains each model once. The four headline models (see What counts as a difference) get two more training runs each, 8 in total. The authors' script uses seed 42 for both the 90/10 split and the trainer. A `--seed` option is added to `scripts/training/train_cai.py`. When given, it seeds adapter initialization and data order and leaves the split at seed 42, so all runs train on the same 900 examples and are checked on the same 100. Without the option the script runs as the authors wrote it. Adapter initialization was not seeded in the original runs, so the first run of each model is one more random draw rather than a seed-42 run.
+- **Batched generation in the safety test.** Answers are generated 16 prompts at a time with left padding (the authors' own inference config uses batch size 16), instead of one prompt per call. Sampling settings are unchanged, but the random stream differs, so answers are not identical to what one-at-a-time generation would give.
 - **Prompt pools.** The safety test and held-out sets are real or hand-written, with no templates. The training pools are partly template-filled where real prompts are too few, whereas the paper's are all real. Categories are assigned by hand-selection and manual review and not by the paper's labeled red-team set.
 - **Constitutions.** Animal-subject versions replace two of the four.
 - **Critique and revision prompts.** Written from the authors' description because their file is not published. The revision prompt tells the critic to write only the revised answer, to leave out any mention of the constitution, critique or revision, and to add no introduction. These instructions guard against leakage and are not verified against the authors' file.
