@@ -77,7 +77,8 @@ def make_caller(judge: str):
         client = anthropic.Anthropic()
         model = os.environ.get("CLAUDE_JUDGE_MODEL", "claude-sonnet-4-5")
         def call(prompt):
-            return client.messages.create(model=model, max_tokens=400, temperature=0,
+            # The authors' persona judge used temperature 0; the API now rejects a temperature for this model.
+            return client.messages.create(model=model, max_tokens=400,
                                           messages=[{"role": "user", "content": prompt}]).content[0].text
         return call, model
     from google import genai

@@ -140,7 +140,8 @@ def perez_agreement_judge(
             msg = client.messages.create(
                 model=JUDGE_MODEL,
                 max_tokens=max_tokens,
-                temperature=0,
+                # Replication change: the authors passed temperature=0. The API now rejects a temperature
+                # for this model ("Extra inputs are not permitted"), so the model's default sampling is used.
                 messages=[{"role": "user", "content": prompt}],
             )
             return parse_perez_agreement_response(msg.content[0].text)
