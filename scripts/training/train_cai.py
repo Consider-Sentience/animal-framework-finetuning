@@ -343,7 +343,7 @@ def _cli() -> None:
     parser.add_argument(
         "--constitution",
         required=True,
-        choices=["virtuous_agent", "subordinate_agent", "generic_agent"],
+        choices=["welfarist", "rights_based", "virtuous_agent", "subordinate_agent", "generic_agent"],
         help="Which constitution's CAI base to train.")
     parser.add_argument(
         "--dataset",
