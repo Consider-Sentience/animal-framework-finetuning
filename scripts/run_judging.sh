@@ -14,11 +14,13 @@ safety() {
   python3 scripts/build_judge_inputs.py > /dev/null
   python3 scripts/evaluation/judge_responses_batch.py --inputs results/animal_tests_judge/*_K5_responses.jsonl \
     --eval-type harmbench_binary --output-suffix _judged.jsonl >> logs/judge_safety_claude.log 2>&1 || echo "safety claude" >> logs/judge_failures.log
-  for f in results/animal_tests_judge/*_K5_responses.jsonl; do
-    id=$(basename "$f" _K5_responses.jsonl)
+  gem_one() {
+    f=$1; id=$(basename "$f" _K5_responses.jsonl)
     python3 scripts/evaluation/judge_gemini_harmbench.py --input "$f" --output results/animal_tests_judged/${id}_K5_gemini.jsonl \
       --max-workers 8 >> logs/judge_safety_gemini.log 2>&1 || echo "safety gemini $id" >> logs/judge_failures.log
-  done
+  }
+  export -f gem_one
+  ls results/animal_tests_judge/*_K5_responses.jsonl | xargs -P 4 -I{} bash -c 'gem_one {}'
 }
 statements() {
   python3 scripts/evaluation/judge_statements.py --judge claude --workers 16 >> logs/judge_statements_claude.log 2>&1 || echo "statements claude" >> logs/judge_failures.log
