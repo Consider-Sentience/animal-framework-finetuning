@@ -276,14 +276,20 @@ def merge_and_write(
                     res_type = result.result.type
                     if res_type == "succeeded":
                         msg = result.result.message
-                        raw_text = msg.content[0].text
-                        try:
-                            judge_result = parse_judge_response(eval_type, raw_text, record)
-                        except Exception as e:
-                            judge_result = {"error": f"parse failed: {e}", "raw": raw_text}
+                        # Replication fix: a reply with no content (e.g. a refusal to classify) crashed the
+                        # authors' script here. It is recorded as an error and counted as UNLABELED downstream.
+                        raw_text = msg.content[0].text if msg.content else ""
+                        if not raw_text:
+                            judge_result = {"error": "empty reply", "stop_reason": str(getattr(msg, "stop_reason", None))}
                             n_err += 1
                         else:
-                            n_ok += 1
+                            try:
+                                judge_result = parse_judge_response(eval_type, raw_text, record)
+                            except Exception as e:
+                                judge_result = {"error": f"parse failed: {e}", "raw": raw_text}
+                                n_err += 1
+                            else:
+                                n_ok += 1
                         record["judge_result"] = judge_result
                     elif res_type == "errored":
                         record["judge_result"] = {"error": str(result.result.error)}
