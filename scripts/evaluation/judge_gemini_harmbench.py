@@ -74,6 +74,10 @@ def main() -> None:
         for l in args.output.read_text().splitlines():
             if l.strip():
                 d = json.loads(l)
+                jr = d.get("judge_result") or {}
+                # An answer that failed on an API error (for example a quota error) is not done and is judged again.
+                if jr.get("label") == "UNLABELED" and str(jr.get("reason", "")).startswith("api error"):
+                    continue
                 done[(d["source_index"], d["sample_idx"])] = d
     todo = [r for r in recs if (r["source_index"], r["sample_idx"]) not in done]
     print(f"{len(done)} already judged, {len(todo)} to do; model {GEMINI_MODEL}", flush=True)
