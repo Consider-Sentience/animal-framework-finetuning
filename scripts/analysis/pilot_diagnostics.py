@@ -11,7 +11,7 @@ import collections, json, re, sys
 from pathlib import Path
 
 LEAK = ["article", "constitution", "principle", "critique", "revision", "preamble"]
-DECLINE = re.compile(r"\b(i can'?t (help|assist|provide)|i cannot (help|assist|provide)|i won'?t|i'?m (not able|unable) to|i am (not able|unable) to|i'?m sorry, but|i can'?t answer|i must decline|i will not|i'?m not going to)\b", re.I)
+DECLINE = re.compile(r"\b(i can['’]?t (help|assist|provide)|i cannot (help|assist|provide)|i won['’]?t|i['’]?m (not able|unable) to|i am (not able|unable) to|i['’]?m sorry, but|i must decline|i will not|i['’]?m not going to)\b", re.I)
 
 def load(p):
     return [json.loads(l) for l in open(p) if l.strip()] if Path(p).exists() else []
@@ -24,10 +24,13 @@ def main(root):
         H = load(inter / f"{const}_harmful_hermes.jsonl")
         E = load(inter / f"{const}_helpful_hermes.jsonl")
         print(f"\n===== {const}: {len(H)} harmful, {len(E)} helpful =====")
-        trunc = sum(1 for r in H for x in r["rounds"] for k in ("critique_finish_reason", "revision_finish_reason") if x.get(k) == "length")
+        trunc_c = sum(1 for r in H for x in r["rounds"] if x.get("critique_finish_reason") == "length")
+        trunc_r = sum(1 for r in H for x in r["rounds"] if x.get("revision_finish_reason") == "length")
+        trunc_final = sum(1 for r in H if r["rounds"][-1].get("revision_finish_reason") == "length")
+        trunc = f"critiques {trunc_c}, revisions {trunc_r} (final-round revisions {trunc_final} of {len(H)})"
         trunc_e = sum(1 for r in E if r.get("finish_reason") == "length")
         empty = sum(1 for r in H + E if not r["response"].strip())
-        print(f"truncated calls: harmful {trunc}, helpful {trunc_e}; empty answers: {empty}")
+        print(f"truncated calls, harmful: {trunc}; helpful answers {trunc_e}; empty answers: {empty}")
         leak = collections.Counter()
         leaked = []
         for r in H + E:
