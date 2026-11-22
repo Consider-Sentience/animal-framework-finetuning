@@ -76,7 +76,7 @@ def main():
     a = ap.parse_args()
     res = {"safety": safety(), "statements": statements()}
     for name in ("safety", "statements"):
-        d = res[name]
+        d = {k: v for k, v in res[name].items() if v["agreement"] is not None}
         n = sum(v.get("n_both_labeled", v.get("n", 0)) for v in d.values())
         if n:
             pooled = sum(v["agreement"] * v.get("n_both_labeled", v.get("n", 0)) for v in d.values()) / n
