@@ -32,7 +32,8 @@ def main():
         answers = {r["prompt"]: r for r in load(first)}
         pool = [r for r in load(clean) if r["prompt"] in answers]
         for r in rng.sample(pool, a.n_per_pool):
-            harmful.append({"prompt": r["prompt"], "initial_response": answers[r["prompt"]]["initial_response"], "pool": name})
+            a_ = answers[r["prompt"]]
+            harmful.append({"source_subset": a_["source_subset"], "source_index": a_["source_index"], "prompt": r["prompt"], "initial_response": a_["initial_response"], "pool": name})
     rng.shuffle(harmful)
     helpful = load("safety_prompts/helpful_500.jsonl")[: 2 * a.n_per_pool]
     for fn, rows in (("harmful_pilot.jsonl", harmful), ("helpful_pilot.jsonl", helpful)):
