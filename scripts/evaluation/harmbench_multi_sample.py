@@ -62,7 +62,7 @@ def build_base(hm7b_path: Path, base_model: str = "mistralai/Mistral-7B-v0.1"):
 
 def run_one(merged_base, tok, adapter_path: Path, model_id: str,
             prompts: list[dict], out_dir: Path, k: int, out_suffix: str,
-            tok=None, batch_size: int = 16):
+            batch_size: int = 16):
     is_base_only = (str(adapter_path).upper() == "BASE")
     print(f"\n=== {model_id}: {'HM7B base only (no Stage 1)' if is_base_only else adapter_path}  (K={k}) ===", flush=True)
     if is_base_only:
@@ -151,7 +151,7 @@ def main():
     merged_base = build_base(args.hm7b_path, args.base_model)
     for model_id, adapter_path in zip(args.model_id, args.adapter):
         run_one(merged_base, tok, Path(adapter_path), model_id, prompts,
-                args.output_dir, args.k, args.out_suffix, tok=tok, batch_size=args.batch_size)
+                args.output_dir, args.k, args.out_suffix, batch_size=args.batch_size)
     print("\nALL DONE")
 
 
