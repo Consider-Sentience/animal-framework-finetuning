@@ -61,7 +61,8 @@ def build_base(hm7b_path: Path, base_model: str = "mistralai/Mistral-7B-v0.1"):
 
 
 def run_one(merged_base, tok, adapter_path: Path, model_id: str,
-            prompts: list[dict], out_dir: Path, k: int, out_suffix: str):
+            prompts: list[dict], out_dir: Path, k: int, out_suffix: str,
+            tok=None, batch_size: int = 16):
     is_base_only = (str(adapter_path).upper() == "BASE")
     print(f"\n=== {model_id}: {'HM7B base only (no Stage 1)' if is_base_only else adapter_path}  (K={k}) ===", flush=True)
     if is_base_only:
@@ -73,9 +74,11 @@ def run_one(merged_base, tok, adapter_path: Path, model_id: str,
     out_path = out_dir / f"{model_id}{out_suffix}_responses.jsonl"
     f = open(out_path, "w")
     t0 = time.time()
-    for i, r in enumerate(prompts):
-        prompt_text = PROMPT_TEMPLATE.format(behavior=r["behavior"])
-        inputs = tok(prompt_text, return_tensors="pt").to(DEVICE)
+    tok.padding_side = "left"  # batched generation needs left padding
+    for b0 in range(0, len(prompts), batch_size):
+        batch = prompts[b0:b0 + batch_size]
+        texts = [PROMPT_TEMPLATE.format(behavior=r["behavior"]) for r in batch]
+        inputs = tok(texts, return_tensors="pt", padding=True).to(DEVICE)
         with torch.no_grad():
             gen = model.generate(
                 **inputs,
@@ -83,27 +86,29 @@ def run_one(merged_base, tok, adapter_path: Path, model_id: str,
                 num_return_sequences=k,
                 **GEN_KWARGS,
             )
-        prompt_len = inputs["input_ids"].shape[1]
-        for sample_idx in range(k):
-            full = tok.decode(gen[sample_idx], skip_special_tokens=True)
-            resp = full[len(prompt_text):].strip()
-            rec = {
-                "source_index": i,
-                "sample_idx": sample_idx,
-                "id": r.get("id"),
-                "behavior_id": r.get("behavior_id"),
-                "category": r.get("category"),
-                "behavior": r["behavior"],
-                "model": model_id,
-                "response": resp,
-            }
-            f.write(json.dumps(rec, ensure_ascii=False) + "\n")
-        f.flush()  # checkpoint per prompt
-        if (i + 1) % 25 == 0:
-            elapsed = time.time() - t0
-            rate = (i + 1) / elapsed
-            eta = (len(prompts) - (i + 1)) / rate
-            print(f"    {i+1}/{len(prompts)}  ({elapsed:.0f}s, ~{rate:.2f} prompt/s, eta {eta:.0f}s)", flush=True)
+        in_len = inputs["input_ids"].shape[1]
+        for j, r in enumerate(batch):
+            i = b0 + j
+            for sample_idx in range(k):
+                new_ids = gen[j * k + sample_idx][in_len:]
+                resp = tok.decode(new_ids, skip_special_tokens=True).strip()
+                rec = {
+                    "source_index": i,
+                    "sample_idx": sample_idx,
+                    "id": r.get("id"),
+                    "behavior_id": r.get("behavior_id"),
+                    "category": r.get("category"),
+                    "behavior": r["behavior"],
+                    "model": model_id,
+                    "response": resp,
+                }
+                f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+        f.flush()  # checkpoint per batch
+        done = min(b0 + batch_size, len(prompts))
+        elapsed = time.time() - t0
+        rate = done / elapsed
+        eta = (len(prompts) - done) / rate
+        print(f"    {done}/{len(prompts)}  ({elapsed:.0f}s, ~{rate:.2f} prompt/s, eta {eta:.0f}s)", flush=True)
 
     f.close()
     print(f"  wrote {out_path}", flush=True)
@@ -126,6 +131,7 @@ def main():
     ap.add_argument("--model-id", action="append", required=True)
     ap.add_argument("--adapter", action="append", required=True)
     ap.add_argument("--base-model", default="mistralai/Mistral-7B-v0.1")
+    ap.add_argument("--batch-size", type=int, default=16, help="Prompts per generate call (K samples each)")
     args = ap.parse_args()
 
     if len(args.model_id) != len(args.adapter):
@@ -145,7 +151,7 @@ def main():
     merged_base = build_base(args.hm7b_path, args.base_model)
     for model_id, adapter_path in zip(args.model_id, args.adapter):
         run_one(merged_base, tok, Path(adapter_path), model_id, prompts,
-                args.output_dir, args.k, args.out_suffix)
+                args.output_dir, args.k, args.out_suffix, tok=tok, batch_size=args.batch_size)
     print("\nALL DONE")
 
 

@@ -4,7 +4,7 @@
 cd "$(dirname "$0")/.." || exit 1
 mkdir -p results/animal_tests logs
 rm -f logs/test_done.flag
-WORKERS=${WORKERS:-4}
+WORKERS=${WORKERS:-2}
 export EVAL=safety_prompts/test_all_440.jsonl
 run() {
   id=$1; adapter=$2
