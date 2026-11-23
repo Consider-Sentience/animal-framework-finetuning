@@ -1,0 +1,174 @@
+{
+  "overall": {
+    "n_answers": 1200,
+    "harmful": 1047,
+    "safe": 76,
+    "unlabeled": 77,
+    "authors_convention_pct": 87.25,
+    "labeled_only_pct": 93.23241317898486,
+    "coverage_pct": 93.58333333333333,
+    "no_assumption_range_pct": [
+      87.25,
+      93.66666666666667
+    ],
+    "authors_convention_ci": [
+      83.58125,
+      90.5
+    ],
+    "labeled_only_ci": [
+      90.70970386129969,
+      95.33416235607002
+    ],
+    "n_prompts": 240
+  },
+  "misinformation_disinformation": {
+    "n_answers": 270,
+    "harmful": 255,
+    "safe": 13,
+    "unlabeled": 2,
+    "authors_convention_pct": 94.44444444444444,
+    "labeled_only_pct": 95.14925373134328,
+    "coverage_pct": 99.25925925925925,
+    "no_assumption_range_pct": [
+      94.44444444444444,
+      95.18518518518519
+    ],
+    "authors_convention_ci": [
+      89.25925925925925,
+      98.51851851851852
+    ],
+    "labeled_only_ci": [
+      90.22556390977444,
+      98.88888888888889
+    ],
+    "n_prompts": 54
+  },
+  "chemical_biological": {
+    "n_answers": 210,
+    "harmful": 140,
+    "safe": 2,
+    "unlabeled": 68,
+    "authors_convention_pct": 66.66666666666667,
+    "labeled_only_pct": 98.59154929577464,
+    "coverage_pct": 67.61904761904762,
+    "no_assumption_range_pct": [
+      66.66666666666667,
+      99.04761904761905
+    ],
+    "authors_convention_ci": [
+      53.80952380952381,
+      80.01190476190474
+    ],
+    "labeled_only_ci": [
+      96.57475200755786,
+      100.0
+    ],
+    "n_prompts": 42
+  },
+  "illegal": {
+    "n_answers": 265,
+    "harmful": 244,
+    "safe": 19,
+    "unlabeled": 2,
+    "authors_convention_pct": 92.0754716981132,
+    "labeled_only_pct": 92.77566539923954,
+    "coverage_pct": 99.24528301886792,
+    "no_assumption_range_pct": [
+      92.0754716981132,
+      92.83018867924528
+    ],
+    "authors_convention_ci": [
+      86.41509433962264,
+      96.98113207547169
+    ],
+    "labeled_only_ci": [
+      86.79245283018868,
+      97.35849056603773
+    ],
+    "n_prompts": 53
+  },
+  "harmful": {
+    "n_answers": 90,
+    "harmful": 86,
+    "safe": 4,
+    "unlabeled": 0,
+    "authors_convention_pct": 95.55555555555556,
+    "labeled_only_pct": 95.55555555555556,
+    "coverage_pct": 100.0,
+    "no_assumption_range_pct": [
+      95.55555555555556,
+      95.55555555555556
+    ],
+    "authors_convention_ci": [
+      88.88888888888889,
+      100.0
+    ],
+    "labeled_only_ci": [
+      88.88888888888889,
+      100.0
+    ],
+    "n_prompts": 18
+  },
+  "cybercrime_intrusion": {
+    "n_answers": 260,
+    "harmful": 229,
+    "safe": 26,
+    "unlabeled": 5,
+    "authors_convention_pct": 88.07692307692308,
+    "labeled_only_pct": 89.80392156862744,
+    "coverage_pct": 98.07692307692308,
+    "no_assumption_range_pct": [
+      88.07692307692308,
+      90.0
+    ],
+    "authors_convention_ci": [
+      81.15384615384616,
+      93.84615384615384
+    ],
+    "labeled_only_ci": [
+      83.66986794717887,
+      94.90441176470588
+    ],
+    "n_prompts": 52
+  },
+  "harassment_bullying": {
+    "n_answers": 105,
+    "harmful": 93,
+    "safe": 12,
+    "unlabeled": 0,
+    "authors_convention_pct": 88.57142857142857,
+    "labeled_only_pct": 88.57142857142857,
+    "coverage_pct": 100.0,
+    "no_assumption_range_pct": [
+      88.57142857142857,
+      88.57142857142857
+    ],
+    "authors_convention_ci": [
+      77.14285714285714,
+      98.0952380952381
+    ],
+    "labeled_only_ci": [
+      77.14285714285714,
+      98.0952380952381
+    ],
+    "n_prompts": 21
+  },
+  "two_judge": {
+    "n": 979,
+    "agreement": 0.8181818181818182,
+    "kappa": 0.3838151678877546
+  },
+  "other_overall": {
+    "n_answers": 1200,
+    "harmful": 735,
+    "safe": 266,
+    "unlabeled": 199,
+    "authors_convention_pct": 61.25,
+    "labeled_only_pct": 73.42657342657343,
+    "coverage_pct": 83.41666666666667,
+    "no_assumption_range_pct": [
+      61.25,
+      77.83333333333333
+    ]
+  }
+}

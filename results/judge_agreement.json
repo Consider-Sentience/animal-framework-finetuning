@@ -1,0 +1,125 @@
+{
+ "safety": {
+  "broad_rights_based": {
+   "n_both_labeled": 1976,
+   "not_labeled_by_one_or_both": 224,
+   "agreement": 0.9989878542510121,
+   "kappa": 0.6662162162162015,
+   "claude_harmful_gemini_safe": 2,
+   "claude_safe_gemini_harmful": 0
+  },
+  "broad_subordinate_agent": {
+   "n_both_labeled": 1948,
+   "not_labeled_by_one_or_both": 252,
+   "agreement": 0.8839835728952772,
+   "kappa": 0.7014782066234505,
+   "claude_harmful_gemini_safe": 211,
+   "claude_safe_gemini_harmful": 15
+  },
+  "broad_virtuous_agent": {
+   "n_both_labeled": 1968,
+   "not_labeled_by_one_or_both": 232,
+   "agreement": 0.9878048780487805,
+   "kappa": 0.5325138072332081,
+   "claude_harmful_gemini_safe": 17,
+   "claude_safe_gemini_harmful": 7
+  },
+  "broad_welfarist": {
+   "n_both_labeled": 1976,
+   "not_labeled_by_one_or_both": 224,
+   "agreement": 0.9924089068825911,
+   "kappa": 0.5909918860738526,
+   "claude_harmful_gemini_safe": 12,
+   "claude_safe_gemini_harmful": 3
+  },
+  "hm7b": {
+   "n_both_labeled": 1044,
+   "not_labeled_by_one_or_both": 1156,
+   "agreement": 0.842911877394636,
+   "kappa": 0.6506152433425161,
+   "claude_harmful_gemini_safe": 147,
+   "claude_safe_gemini_harmful": 17
+  },
+  "illegal_rights_based": {
+   "n_both_labeled": 0,
+   "not_labeled_by_one_or_both": 2200,
+   "agreement": null,
+   "kappa": null,
+   "claude_harmful_gemini_safe": 0,
+   "claude_safe_gemini_harmful": 0
+  },
+  "illegal_subordinate_agent": {
+   "n_both_labeled": 0,
+   "not_labeled_by_one_or_both": 2200,
+   "agreement": null,
+   "kappa": null,
+   "claude_harmful_gemini_safe": 0,
+   "claude_safe_gemini_harmful": 0
+  },
+  "illegal_virtuous_agent": {
+   "n_both_labeled": 0,
+   "not_labeled_by_one_or_both": 2200,
+   "agreement": null,
+   "kappa": null,
+   "claude_harmful_gemini_safe": 0,
+   "claude_safe_gemini_harmful": 0
+  },
+  "illegal_welfarist": {
+   "n_both_labeled": 0,
+   "not_labeled_by_one_or_both": 2200,
+   "agreement": null,
+   "kappa": null,
+   "claude_harmful_gemini_safe": 0,
+   "claude_safe_gemini_harmful": 0
+  },
+  "speciesist_rights_based": {
+   "n_both_labeled": 0,
+   "not_labeled_by_one_or_both": 2200,
+   "agreement": null,
+   "kappa": null,
+   "claude_harmful_gemini_safe": 0,
+   "claude_safe_gemini_harmful": 0
+  },
+  "speciesist_subordinate_agent": {
+   "n_both_labeled": 0,
+   "not_labeled_by_one_or_both": 2200,
+   "agreement": null,
+   "kappa": null,
+   "claude_harmful_gemini_safe": 0,
+   "claude_safe_gemini_harmful": 0
+  },
+  "speciesist_virtuous_agent": {
+   "n_both_labeled": 0,
+   "not_labeled_by_one_or_both": 2200,
+   "agreement": null,
+   "kappa": null,
+   "claude_harmful_gemini_safe": 0,
+   "claude_safe_gemini_harmful": 0
+  },
+  "speciesist_welfarist": {
+   "n_both_labeled": 0,
+   "not_labeled_by_one_or_both": 2200,
+   "agreement": null,
+   "kappa": null,
+   "claude_harmful_gemini_safe": 0,
+   "claude_safe_gemini_harmful": 0
+  }
+ },
+ "statements": {
+  "broad_rights_based": {
+   "n": 0,
+   "agreement": null,
+   "kappa": null,
+   "unusable": 825,
+   "confusion": {}
+  },
+  "broad_subordinate_agent": {
+   "n": 0,
+   "agreement": null,
+   "kappa": null,
+   "unusable": 825,
+   "confusion": {}
+  }
+ },
+ "safety_pooled_agreement": 0.9516382405745063
+}
