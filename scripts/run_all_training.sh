@@ -5,7 +5,7 @@
 # Resumable: a model whose adapter already exists is skipped. Needs one A100 and trained_models/hm7b.
 set -u
 for s in broad speciesist illegal; do
-  for c in welfarist rights_based virtuous_agent subordinate_agent; do
+  for c in ${CONS:-welfarist rights_based virtuous_agent subordinate_agent}; do
     out=trained_models/$s/$c
     if [ -f $out/adapter_model.safetensors ]; then echo "skip $s $c"; continue; fi
     python3 scripts/training/train_cai.py --constitution $c --dataset gen/$s/${c}_cai_base_hermes.jsonl \

@@ -44,3 +44,27 @@ The unit is the statement and pushback pair. Intervals come from a cluster boots
 ## Persona test (360 statements)
 
 Judged with the authors' judge, unchanged. Scoring is in scripts/analysis/persona_scores.py, written from the paper's description and committed before any persona judgment was read: the AGREES rate per dimension, the shift from the helpful-only model (Eq. 1), the self-shift (Eq. 2), the constitutional voice (Eq. 3), and the score out of 8 as the sum of two ranks (own dimension among the model's four dimensions, and among the four models on that dimension). The paper's text that was available gives no rank-based null test. The permutation null in the script (the total score against all 24 assignments of dimensions to models) is this study's own addition and is reported as such. Persona results are one run per model.
+
+## The authors' Consequentialist and Deontological constitutions on animal prompts
+
+Fixed on 2026-11-23, before any answer from these six models existed. At that point the first twelve models, their extra seeds and the results above had been produced, and the training data for the six new models had begun to generate. No output of the six new models had been tested.
+
+**Models.** The Consequentialist and Deontological constitutions are the authors' own files (constitutions/consequentialist and constitutions/deontological, copied unchanged from the authors' repository). Each is trained at the same three scopes as every other constitution (broad, speciesist-abuse narrow with poisoning held out, illegal-harm narrow with misinformation held out), on the same animal prompts, with the same critique and revision prompts, the same Hermes 3 405B critic, the same 500 helpful and 500 safety samples, and the same LoRA settings. That makes six models, one run each, all labeled "(1 seed)" with no separation rule.
+
+**Order of reporting.** Every table lists the models in this order: Consequentialist, Welfarist, Deontological, Rights-based, Virtuous, Subordinate. Consequentialist and Deontological are the authors' general-ethics constitutions. Welfarist and Rights-based are their animal versions.
+
+**Measures.** The six new models get exactly the measures the Virtuous and Subordinate models get. The turn-1 match and capitulation measures stay defined only for the Welfarist and Rights-based models, because they need an expected answer written for the model's own framework. For all models, including the six new ones, the framework-neutral measure is reported: the share of the 40 framework-specific statements answered with the rights-expected answer.
+
+**Comparison rule.** A one-run model is compared with the spread of the three runs of the matching animal constitution: Consequentialist with Welfarist, Deontological with Rights-based, at the same scope. Its value is described as inside that range or outside it. No significance claim is made from one run. Consequentialist against Deontological, and each of the four against Virtuous and Subordinate, are reported as differences with the bootstrap intervals, and the same caution applies.
+
+**Statement register check.** The 40 framework-specific statements are split by the register in which they were written (20 in welfarist wording, 20 in rights wording). For every model, the rights-expected share is reported separately for the two registers. This shows whether the wording of a statement, and not the framework, moves the answers. It is a diagnostic and has no threshold.
+
+**Training-data decline rate.** For every constitution and every training set, the share of final harmful-slot answers flagged as declines by the same pattern the pilot used (scripts/analysis/pilot_diagnostics.py) is reported. The purpose is to show whether differences between models could come from differing rates of declining in the data they were trained on. It is a diagnostic and has no threshold.
+
+**Persona test.** The six new models and the existing ones are scored with the same script and the same 360 statements. Two sets are reported. The authors' set maps Consequentialist to the utilitarian dimension, Deontological to deontology, Virtuous to virtue and Subordinate to deference. The animal set maps Welfarist to utilitarian, Rights-based to deontology, Virtuous to virtue and Subordinate to deference. The permutation null is the same as above and is this study's own addition.
+
+**Judges.** The six new models' held-out answers are judged by Claude Sonnet 4.5 and by Gemini 3.8 Flash, with the same prompts and the same handling of unlabeled answers as above. The two Virtuous held-out files, which the second judge has not yet labeled, are judged by Gemini 3.8 Flash too, so that all models have both judges. First-turn statement answers are judged by both, and every statement answer by Claude Sonnet 4.5.
+
+**Judge repeatability.** A random sample (seed 42) of 200 turn-1 statement answers and 200 held-out safety answers, drawn across all models, is judged a second time by Claude Sonnet 4.5 with the same prompt. Raw agreement and Cohen's kappa between the two passes are reported. No result is changed on the basis of this check.
+
+**Tests.** The paper's chi-square and Fisher tests on the held-out sets are run for each of the six new models against HM7B, with the same caveat as above about treating the five samples as independent. The prompt-level bootstrap intervals remain the main uncertainty estimate.

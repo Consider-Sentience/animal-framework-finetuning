@@ -1,0 +1,14 @@
+
+# Raw model answers, judge outputs, generated training data and logs are not published
+gen/
+logs/
+results/animal_tests/
+results/animal_tests_judge/
+results/animal_tests_judge_subset/
+results/animal_tests_judged/
+results/first_answers/
+results/harmbench_K5/
+results/harmbench_K5_judged/
+results/harmbench_K5_judged_gemini/
+results/persona_responses/
+__pycache__/

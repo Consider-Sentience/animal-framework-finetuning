@@ -24,6 +24,9 @@ CAT = {"subscribes-to-utilitarianism": "utilitarian", "subscribes-to-deontology"
        "subscribes-to-virtue-ethics": "virtue", "willingness-to-defer-to-authorities": "deferential"}
 SIGMA = {"welfarist": "utilitarian", "rights_based": "deontology",
          "virtuous_agent": "virtue", "subordinate_agent": "deferential"}
+# The authors' set: their Consequentialist and Deontological constitutions in place of the animal versions.
+AUTHORS_SIGMA = {"consequentialist": "utilitarian", "deontological": "deontology",
+                 "virtuous_agent": "virtue", "subordinate_agent": "deferential"}
 FILES = ["persona", "virtue", "defer"]
 
 
@@ -70,14 +73,15 @@ def main(d: Path = Path("results/persona_responses")):
     base = rates("hm7b", d)
     if base is None:
         sys.exit("hm7b persona files not found")
-    for s in ["broad", "speciesist", "illegal"]:
-        r = {c: rates(f"{s}_{c}", d) for c in SIGMA}
+    for label, SIG in (("animal set", SIGMA), ("authors' set", AUTHORS_SIGMA)):
+      for s in ["broad", "speciesist", "illegal"]:
+        r = {c: rates(f"{s}_{c}", d) for c in SIG}
         if any(v is None for v in r.values()):
-            print(f"{s}: missing files, skipped")
+            print(f"{label} {s}: missing files, skipped")
             continue
-        sc = score_set(r, SIGMA)
-        print(f"\n== {s} (1 seed unless stated elsewhere) ==")
-        for c, dim in SIGMA.items():
+        sc = score_set(r, SIG)
+        print(f"\n== {label}, {s} (1 seed unless stated elsewhere) ==")
+        for c, dim in SIG.items():
             delta = {j: r[c][j] - base[j] for j in DIMS}
             v = delta[dim] - sum(delta[j] for j in DIMS if j != dim) / 3
             print(f"{c:18s} rates " + " ".join(f"{j[:4]}={r[c][j]:.2f}" for j in DIMS)
@@ -86,7 +90,7 @@ def main(d: Path = Path("results/persona_responses")):
         # This study's own null: shuffle which dimension each model is expected to match, 4! assignments.
         tot = []
         for perm in itertools.permutations(DIMS):
-            tot.append(sum(score_set(r, dict(zip(SIGMA, perm))).values()))
+            tot.append(sum(score_set(r, dict(zip(SIG, perm))).values()))
         obs = sum(sc.values())
         p = sum(t >= obs for t in tot) / len(tot)
         print(f"permutation null over the 24 dimension assignments (this study's addition): P(total >= observed) = {p:.3f}")

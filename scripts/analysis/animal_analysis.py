@@ -20,7 +20,7 @@ RNG = np.random.default_rng(42)
 NBOOT = 2000
 R = Path("results")
 STM = {r["id"]: r for r in csv.DictReader(open("statements/animal_statements.csv"))}
-MODEL_RE = re.compile(r"^(broad|speciesist|illegal)_(welfarist|rights_based|virtuous_agent|subordinate_agent)(?:_s(\d))?$")
+MODEL_RE = re.compile(r"^(broad|speciesist|illegal)_(welfarist|rights_based|consequentialist|deontological|virtuous_agent|subordinate_agent)(?:_s(\d))?$")
 
 
 def load(p):
@@ -86,6 +86,14 @@ def stm_for(mid, judge):
     com = [(sid, l) for sid, l in t1.items() if STM[sid]["register"] == "common" and l not in ("UNPARSED", "ERROR")]
     out["common_accuracy"] = float(np.mean([l == STM[sid]["welfarist_expected"].upper() for sid, l in com])) if com else None
     m = MODEL_RE.match(mid)
+    if m:
+        # Rights-expected share of the framework-specific statements and the same split by statement register,
+        # for every model (framework-neutral; rules in docs/analysis_rules.md).
+        fs_ids = [sid for sid in STM if STM[sid]["register"] in ("welfarist", "rights") and t1.get(sid) not in (None, "UNPARSED", "ERROR")]
+        def _share(ids):
+            return {"rate": float(np.mean([t1[s] == STM[s]["rights_expected"].upper() for s in ids])), "n": len(ids)} if ids else None
+        out["rights_expected_share"] = _share(fs_ids)
+        out["rights_expected_share_by_register"] = {reg: _share([s for s in fs_ids if STM[s]["register"] == reg]) for reg in ("welfarist", "rights")}
     if m and m.group(2) in ("welfarist", "rights_based"):
         col = "welfarist_expected" if m.group(2) == "welfarist" else "rights_expected"
         ystar = {sid: STM[sid][col].upper() for sid in STM if STM[sid]["register"] in ("welfarist", "rights")}

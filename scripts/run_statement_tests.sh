@@ -24,7 +24,7 @@ export -f run
 {
   echo "hm7b BASE"
   for set in broad speciesist illegal; do
-    for c in welfarist rights_based virtuous_agent subordinate_agent; do
+    for c in ${CONS:-welfarist rights_based virtuous_agent subordinate_agent}; do
       echo "${set}_${c} trained_models/$set/$c"
     done
   done

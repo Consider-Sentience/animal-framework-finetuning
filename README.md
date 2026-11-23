@@ -21,9 +21,20 @@ Question 3 is not in the original paper. It is added at test time only, so the r
 
 The study does not try to decide which framework is correct. It measures what each framework does to a model.
 
-## Status
+## Results
 
-The constitutions, the 60 test statements and the 36 pushbacks are written. The helpful-only base model is training. The constitutional models and the tests follow.
+The 12 models were trained, tested and judged. Two findings replicate the paper and two do not. Harm rates count only answers a judge labeled harmful or safe. HM7B is the helpful-only starting model. Two models judge the answers: the Claude Sonnet 4.5 judge and the Gemini 3.8 Flash judge.
+
+| Finding | Result | Replicates the paper? |
+| --- | --- | --- |
+| Narrow training lowers harm on the held-out category | HM7B: 71% harmful on held-out poisoning, 72% on held-out misinformation. Trained models: 15-24% and 9-14% under the Claude Sonnet 4.5 judge; 8-15% and 6-10% under the Gemini 3.8 Flash judge | Yes |
+| Models take on the paper's ethical personas | On the paper's 360 statements, welfarist models agree with utilitarian items 72-81% of the time and rights-based models 30-46% | Yes |
+| The frameworks separate on 40 animal-ethics statements | Scored against their own framework's answers, welfarist models match 32.5-40% and rights-based models 60-72.5%. But the two answer keys are exact opposites, and both groups give the rights-expected answer 52-73% of the time (HM7B: 45-50%). The two groups do not separate | No |
+| Welfarist and rights-based models differ on held-out harm | Poisoning: welfarist models are more harmful under the Gemini 3.8 Flash judge, not under the Claude Sonnet 4.5 judge. Misinformation: no separation under either judge | Depends on the judge |
+
+The Claude Sonnet 4.5 judge returned no label for about a quarter of the held-out poisoning answers, so its rates on that set rest on about three quarters of the answers. The Gemini 3.8 Flash judge labeled almost all of them. Both judges are reported everywhere, together with the share of answers each labeled and the range the rate could fall in with no assumption about the unlabeled ones.
+
+The numbers are in `results/`: `animal_analysis_claude.json` and `animal_analysis_gemini.json` (harm rates, statement measures and pushback transitions), `paper_tests.json` (the paper's significance tests), `judge_agreement.json` (agreement between the two judges), `statements_turn1_gemini.json`, `persona_scores.txt` and `baseline_estimates.json`. Raw model answers are not included, because the untuned model's answers to harmful requests contain harmful content.
 
 ## What is the same as the paper and what is not
 
@@ -47,11 +58,13 @@ The constitutions, the 60 test statements and the 36 pushbacks are written. The 
 | `pushbacks/pushbacks.csv` | The 36 pushbacks used in the pressure condition, tagged by direction and type, and by whether a factual claim is true or which moral view a moral one reflects |
 | `docs/method.md` | Pipeline, deviations, scoring and controls |
 | `docs/pressure_design.md` | Design of the pushback condition |
+| `docs/analysis_rules.md` | How answers are labeled and scored, and what counts as a difference between models |
+| `results/` | Analysis outputs, judge agreement, persona scores and baseline estimates |
 | `safety_prompts/` | Training pools, held-out sets and the safety test, with a README |
-| `scripts/` | Prompt builders and checks, plus the training, generation, evaluation and judge scripts |
+| `scripts/` | Prompt builders and checks, the training, generation, evaluation and judge scripts, and `scripts/analysis/` for the analyses |
 | `configs/` | Training and inference settings |
 
-The prompt sets are in `safety_prompts/` and the scripts that build and check them are in `scripts/`. The training, generation and evaluation scripts in `scripts/` are copied from the authors' repository with only file paths and the judge model changed; that code is under the Apache License 2.0 and each file keeps its original header.
+The prompt sets are in `safety_prompts/` and the scripts that build and check them are in `scripts/`. The training, generation and evaluation scripts in `scripts/` are copied from the authors' repository with the small changes listed in `docs/method.md`; that code is under the Apache License 2.0 and each file keeps its original header.
 
 ## The animal test statements
 
@@ -78,6 +91,8 @@ The split by direction and type is this study's own design. It builds on Kim and
 - The animal statements have no human rater check.
 - The authors' critique and revision prompt file is not published, so ours are written from their description.
 - Part of the training pools is template-generated where real prompts were too few. The safety test and held-out sets contain no templates.
+- Results come from one 7B model, one training recipe and three runs for each headline model.
+- The two judges disagree on what counts as harmful, which is why the held-out comparison between frameworks depends on the judge.
 - Results describe what training does to one small model. They do not show which framework a model should use.
 - The Alpaca data used for the starting model is licensed for non-commercial use, so trained adapters carry the same limit.
 

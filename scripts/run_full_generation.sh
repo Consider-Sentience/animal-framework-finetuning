@@ -4,7 +4,7 @@
 # the three training sets; the harmful slot differs per set. Resumable: finished records are skipped.
 # Needs DEEPINFRA_API_KEY in the environment and gen/inputs from scripts/build_generation_inputs.py.
 set -u
-CONS="welfarist rights_based virtuous_agent subordinate_agent"
+CONS="${CONS:-welfarist rights_based virtuous_agent subordinate_agent}"
 COMMON="--constitutions-dir constitutions --constitutions $CONS --max-workers ${WORKERS:-12}"
 python3 scripts/cai_dataset_generator_hermes.py --hm7b-responses gen/inputs/harmful_broad.jsonl \
   --helpful-prompts safety_prompts/helpful_500.jsonl --output-dir gen/helpful --slots helpful $COMMON \
