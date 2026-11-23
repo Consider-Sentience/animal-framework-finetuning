@@ -1,0 +1,282 @@
+{
+ "claude_sonnet_4_5": {
+  "speciesist_welfarist_vs_hm7b": {
+   "harmful": 81,
+   "n": 500,
+   "hm7b_harmful": 252,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 3.866876880700017e-30
+  },
+  "speciesist_rights_based_vs_hm7b": {
+   "harmful": 60,
+   "n": 500,
+   "hm7b_harmful": 252,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 7.583513664444747e-39
+  },
+  "speciesist_welfarist_vs_rights_based_run1": {
+   "welfarist_harmful": 81,
+   "rights_harmful": 60,
+   "n_each": 500,
+   "test": "chi2_yates",
+   "p": 0.06917296330509294
+  },
+  "speciesist_welfarist_s1_vs_hm7b": {
+   "harmful": 66,
+   "n": 500,
+   "hm7b_harmful": 252,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 3.4069053320042774e-36
+  },
+  "speciesist_rights_based_s1_vs_hm7b": {
+   "harmful": 54,
+   "n": 500,
+   "hm7b_harmful": 252,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 1.217710155207213e-41
+  },
+  "speciesist_welfarist_vs_rights_based_s1": {
+   "welfarist_harmful": 66,
+   "rights_harmful": 54,
+   "n_each": 500,
+   "test": "chi2_yates",
+   "p": 0.28442308052961096
+  },
+  "speciesist_welfarist_s2_vs_hm7b": {
+   "harmful": 87,
+   "n": 500,
+   "hm7b_harmful": 252,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 6.2339564395438925e-28
+  },
+  "speciesist_rights_based_s2_vs_hm7b": {
+   "harmful": 67,
+   "n": 500,
+   "hm7b_harmful": 252,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 9.144251481931402e-36
+  },
+  "speciesist_welfarist_vs_rights_based_s2": {
+   "welfarist_harmful": 87,
+   "rights_harmful": 67,
+   "n_each": 500,
+   "test": "chi2_yates",
+   "p": 0.09599398666791617
+  },
+  "illegal_welfarist_vs_hm7b": {
+   "harmful": 43,
+   "n": 500,
+   "hm7b_harmful": 349,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 7.084687197939294e-87
+  },
+  "illegal_rights_based_vs_hm7b": {
+   "harmful": 51,
+   "n": 500,
+   "hm7b_harmful": 349,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 6.432228445477361e-82
+  },
+  "illegal_welfarist_vs_rights_based_run1": {
+   "welfarist_harmful": 43,
+   "rights_harmful": 51,
+   "n_each": 500,
+   "test": "chi2_yates",
+   "p": 0.44813663207501175
+  },
+  "illegal_welfarist_s1_vs_hm7b": {
+   "harmful": 69,
+   "n": 500,
+   "hm7b_harmful": 349,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 1.4704671889113293e-71
+  },
+  "illegal_rights_based_s1_vs_hm7b": {
+   "harmful": 63,
+   "n": 500,
+   "hm7b_harmful": 349,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 6.785117846544179e-75
+  },
+  "illegal_welfarist_vs_rights_based_s1": {
+   "welfarist_harmful": 69,
+   "rights_harmful": 63,
+   "n_each": 500,
+   "test": "chi2_yates",
+   "p": 0.6404180933908992
+  },
+  "illegal_welfarist_s2_vs_hm7b": {
+   "harmful": 41,
+   "n": 500,
+   "hm7b_harmful": 349,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 3.7544278006138247e-88
+  },
+  "illegal_rights_based_s2_vs_hm7b": {
+   "harmful": 64,
+   "n": 500,
+   "hm7b_harmful": 349,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 2.48567272234868e-74
+  },
+  "illegal_welfarist_vs_rights_based_s2": {
+   "welfarist_harmful": 41,
+   "rights_harmful": 64,
+   "n_each": 500,
+   "test": "chi2_yates",
+   "p": 0.023242277799458602
+  }
+ },
+ "gemini_3_8_flash": {
+  "speciesist_welfarist_vs_hm7b": {
+   "harmful": 64,
+   "n": 500,
+   "hm7b_harmful": 222,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 4.427892998142525e-28
+  },
+  "speciesist_rights_based_vs_hm7b": {
+   "harmful": 41,
+   "n": 500,
+   "hm7b_harmful": 222,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 3.0929363340772033e-38
+  },
+  "speciesist_welfarist_vs_rights_based_run1": {
+   "welfarist_harmful": 64,
+   "rights_harmful": 41,
+   "n_each": 500,
+   "test": "chi2_yates",
+   "p": 0.023242277799458602
+  },
+  "speciesist_welfarist_s1_vs_hm7b": {
+   "harmful": 57,
+   "n": 500,
+   "hm7b_harmful": 222,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 6.338197853336432e-31
+  },
+  "speciesist_rights_based_s1_vs_hm7b": {
+   "harmful": 39,
+   "n": 500,
+   "hm7b_harmful": 222,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 3.092581541223485e-39
+  },
+  "speciesist_welfarist_vs_rights_based_s1": {
+   "welfarist_harmful": 57,
+   "rights_harmful": 39,
+   "n_each": 500,
+   "test": "chi2_yates",
+   "p": 0.06802245187885392
+  },
+  "speciesist_welfarist_s2_vs_hm7b": {
+   "harmful": 69,
+   "n": 500,
+   "hm7b_harmful": 222,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 3.6058154390274353e-26
+  },
+  "speciesist_rights_based_s2_vs_hm7b": {
+   "harmful": 43,
+   "n": 500,
+   "hm7b_harmful": 222,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 2.953724142868031e-37
+  },
+  "speciesist_welfarist_vs_rights_based_s2": {
+   "welfarist_harmful": 69,
+   "rights_harmful": 43,
+   "n_each": 500,
+   "test": "chi2_yates",
+   "p": 0.01218200190115142
+  },
+  "illegal_welfarist_vs_hm7b": {
+   "harmful": 33,
+   "n": 500,
+   "hm7b_harmful": 271,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 1.1026663055603585e-59
+  },
+  "illegal_rights_based_vs_hm7b": {
+   "harmful": 33,
+   "n": 500,
+   "hm7b_harmful": 271,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 1.1026663055603585e-59
+  },
+  "illegal_welfarist_vs_rights_based_run1": {
+   "welfarist_harmful": 33,
+   "rights_harmful": 33,
+   "n_each": 500,
+   "test": "chi2_yates",
+   "p": 1.0
+  },
+  "illegal_welfarist_s1_vs_hm7b": {
+   "harmful": 46,
+   "n": 500,
+   "hm7b_harmful": 271,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 2.47816509915902e-52
+  },
+  "illegal_rights_based_s1_vs_hm7b": {
+   "harmful": 46,
+   "n": 500,
+   "hm7b_harmful": 271,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 2.47816509915902e-52
+  },
+  "illegal_welfarist_vs_rights_based_s1": {
+   "welfarist_harmful": 46,
+   "rights_harmful": 46,
+   "n_each": 500,
+   "test": "chi2_yates",
+   "p": 1.0
+  },
+  "illegal_welfarist_s2_vs_hm7b": {
+   "harmful": 29,
+   "n": 500,
+   "hm7b_harmful": 271,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 4.185233430606945e-62
+  },
+  "illegal_rights_based_s2_vs_hm7b": {
+   "harmful": 49,
+   "n": 500,
+   "hm7b_harmful": 271,
+   "hm7b_n": 500,
+   "test": "chi2_yates",
+   "p": 9.662435505317674e-51
+  },
+  "illegal_welfarist_vs_rights_based_s2": {
+   "welfarist_harmful": 29,
+   "rights_harmful": 49,
+   "n_each": 500,
+   "test": "chi2_yates",
+   "p": 0.025059855511777605
+  }
+ }
+}

@@ -2,7 +2,7 @@
 # Second judge (Gemini 3.8 Flash) on the headline models' held-out answers only. Needs GOOGLE_API_KEY.
 # Tier 1 allows 10,000 generate-content requests per model per day, far below the ~63,000 a full second pass needs,
 # so this covers only the held-out set of each speciesist and illegal model (poison for speciesist, misinfo for illegal),
-# including the seed 1 and 2 runs: about 500 prompts x 5 answers = 2,500 requests per model, 12 models.
+# including the seed 1 and 2 runs: 100 held-out prompts x 5 answers = 500 requests per model.
 # Resumable. Run it again after the daily quota resets; files that finished are skipped.
 cd "$(dirname "$0")/.." || exit 1
 mkdir -p results/animal_tests_judge_subset results/animal_tests_judged logs
