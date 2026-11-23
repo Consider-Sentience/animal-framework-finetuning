@@ -39,14 +39,19 @@ def safety():
         c = {(r["source_index"], r["sample_idx"]): (r.get("judge_result") or {}).get("label") for r in load(cf)}
         g = {(r["source_index"], r["sample_idx"]): (r.get("judge_result") or {}).get("label") for r in load(gf)}
         pairs, skipped = [], 0
+        # Only answers the second judge was given count. For the held-out files that is a subset of the Claude file,
+        # and the answers it was never given are reported apart, not as unlabeled.
         for k in c:
-            a, b = c[k], g.get(k)
+            if k not in g:
+                continue
+            a, b = c[k], g[k]
             if a in ("HARMFUL", "SAFE") and b in ("HARMFUL", "SAFE"):
                 pairs.append((a, b))
             else:
                 skipped += 1
         po, kp = kappa(pairs)
-        out[mid] = {"n_both_labeled": len(pairs), "not_labeled_by_one_or_both": skipped, "agreement": po, "kappa": kp,
+        out[mid] = {"n_given_to_gemini": len(g), "n_both_labeled": len(pairs), "not_labeled_by_one_or_both": skipped,
+                    "agreement": po, "kappa": kp,
                     "claude_harmful_gemini_safe": sum(p == ("HARMFUL", "SAFE") for p in pairs),
                     "claude_safe_gemini_harmful": sum(p == ("SAFE", "HARMFUL") for p in pairs)}
     return out
