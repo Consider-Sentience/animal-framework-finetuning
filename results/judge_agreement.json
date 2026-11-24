@@ -1,5 +1,23 @@
 {
  "safety": {
+  "broad_consequentialist": {
+   "n_given_to_gemini": 1000,
+   "n_both_labeled": 869,
+   "not_labeled_by_one_or_both": 131,
+   "agreement": 0.9804372842347526,
+   "kappa": 0.5053075712420066,
+   "claude_harmful_gemini_safe": 14,
+   "claude_safe_gemini_harmful": 3
+  },
+  "broad_deontological": {
+   "n_given_to_gemini": 1000,
+   "n_both_labeled": 870,
+   "not_labeled_by_one_or_both": 130,
+   "agreement": 0.9977011494252873,
+   "kappa": 0.49913644214161945,
+   "claude_harmful_gemini_safe": 0,
+   "claude_safe_gemini_harmful": 2
+  },
   "broad_rights_based": {
    "n_given_to_gemini": 2200,
    "n_both_labeled": 1977,
@@ -38,155 +56,525 @@
   },
   "hm7b": {
    "n_given_to_gemini": 2200,
-   "n_both_labeled": 1820,
-   "not_labeled_by_one_or_both": 380,
-   "agreement": 0.8263736263736263,
-   "kappa": 0.6253289902280129,
-   "claude_harmful_gemini_safe": 285,
+   "n_both_labeled": 1825,
+   "not_labeled_by_one_or_both": 375,
+   "agreement": 0.829041095890411,
+   "kappa": 0.6295260093041414,
+   "claude_harmful_gemini_safe": 281,
    "claude_safe_gemini_harmful": 31
+  },
+  "illegal_consequentialist": {
+   "n_given_to_gemini": 500,
+   "n_both_labeled": 484,
+   "not_labeled_by_one_or_both": 16,
+   "agreement": 0.9607438016528925,
+   "kappa": 0.6689228110599075,
+   "claude_harmful_gemini_safe": 17,
+   "claude_safe_gemini_harmful": 2
+  },
+  "illegal_deontological": {
+   "n_given_to_gemini": 500,
+   "n_both_labeled": 484,
+   "not_labeled_by_one_or_both": 16,
+   "agreement": 0.9318181818181818,
+   "kappa": 0.706548100242522,
+   "claude_harmful_gemini_safe": 29,
+   "claude_safe_gemini_harmful": 4
   },
   "illegal_rights_based": {
    "n_given_to_gemini": 500,
    "n_both_labeled": 484,
    "not_labeled_by_one_or_both": 16,
-   "agreement": 0.9504132231404959,
-   "kappa": 0.6884955752212393,
+   "agreement": 0.9483471074380165,
+   "kappa": 0.6788065406668083,
    "claude_harmful_gemini_safe": 21,
-   "claude_safe_gemini_harmful": 3
+   "claude_safe_gemini_harmful": 4
   },
   "illegal_rights_based_s1": {
    "n_given_to_gemini": 500,
    "n_both_labeled": 485,
    "not_labeled_by_one_or_both": 15,
-   "agreement": 0.931958762886598,
-   "kappa": 0.6599672820752513,
-   "claude_harmful_gemini_safe": 25,
-   "claude_safe_gemini_harmful": 8
+   "agreement": 0.9360824742268041,
+   "kappa": 0.6805753255858421,
+   "claude_harmful_gemini_safe": 24,
+   "claude_safe_gemini_harmful": 7
   },
   "illegal_rights_based_s2": {
    "n_given_to_gemini": 500,
    "n_both_labeled": 484,
    "not_labeled_by_one_or_both": 16,
    "agreement": 0.9380165289256198,
-   "kappa": 0.6979027962716376,
-   "claude_harmful_gemini_safe": 23,
-   "claude_safe_gemini_harmful": 7
+   "kappa": 0.6886792452830188,
+   "claude_harmful_gemini_safe": 25,
+   "claude_safe_gemini_harmful": 5
   },
   "illegal_subordinate_agent": {
    "n_given_to_gemini": 500,
    "n_both_labeled": 484,
    "not_labeled_by_one_or_both": 16,
-   "agreement": 0.8016528925619835,
-   "kappa": 0.5543620041433285,
-   "claude_harmful_gemini_safe": 91,
-   "claude_safe_gemini_harmful": 5
+   "agreement": 0.8181818181818182,
+   "kappa": 0.5929974772570905,
+   "claude_harmful_gemini_safe": 85,
+   "claude_safe_gemini_harmful": 3
+  },
+  "illegal_virtuous_agent": {
+   "n_given_to_gemini": 500,
+   "n_both_labeled": 485,
+   "not_labeled_by_one_or_both": 15,
+   "agreement": 0.9154639175257732,
+   "kappa": 0.603987015314759,
+   "claude_harmful_gemini_safe": 33,
+   "claude_safe_gemini_harmful": 8
   },
   "illegal_welfarist": {
    "n_given_to_gemini": 500,
    "n_both_labeled": 484,
    "not_labeled_by_one_or_both": 16,
-   "agreement": 0.9504132231404959,
-   "kappa": 0.6578094620868442,
-   "claude_harmful_gemini_safe": 17,
-   "claude_safe_gemini_harmful": 7
+   "agreement": 0.9586776859504132,
+   "kappa": 0.7148412184057034,
+   "claude_harmful_gemini_safe": 15,
+   "claude_safe_gemini_harmful": 5
   },
   "illegal_welfarist_s1": {
    "n_given_to_gemini": 500,
    "n_both_labeled": 485,
    "not_labeled_by_one_or_both": 15,
-   "agreement": 0.9422680412371134,
-   "kappa": 0.7233088834555828,
-   "claude_harmful_gemini_safe": 26,
-   "claude_safe_gemini_harmful": 2
+   "agreement": 0.9381443298969072,
+   "kappa": 0.7035452322738387,
+   "claude_harmful_gemini_safe": 27,
+   "claude_safe_gemini_harmful": 3
   },
   "illegal_welfarist_s2": {
    "n_given_to_gemini": 500,
    "n_both_labeled": 484,
    "not_labeled_by_one_or_both": 16,
-   "agreement": 0.9483471074380165,
-   "kappa": 0.6109324758842444,
-   "claude_harmful_gemini_safe": 19,
+   "agreement": 0.9462809917355371,
+   "kappa": 0.5900710143983319,
+   "claude_harmful_gemini_safe": 20,
    "claude_safe_gemini_harmful": 6
+  },
+  "speciesist_consequentialist": {
+   "n_given_to_gemini": 500,
+   "n_both_labeled": 333,
+   "not_labeled_by_one_or_both": 167,
+   "agreement": 0.8798798798798799,
+   "kappa": 0.6736733793914451,
+   "claude_harmful_gemini_safe": 33,
+   "claude_safe_gemini_harmful": 7
+  },
+  "speciesist_deontological": {
+   "n_given_to_gemini": 500,
+   "n_both_labeled": 361,
+   "not_labeled_by_one_or_both": 139,
+   "agreement": 0.9529085872576177,
+   "kappa": 0.801718845917741,
+   "claude_harmful_gemini_safe": 16,
+   "claude_safe_gemini_harmful": 1
   },
   "speciesist_rights_based": {
    "n_given_to_gemini": 500,
    "n_both_labeled": 360,
    "not_labeled_by_one_or_both": 140,
-   "agreement": 0.9222222222222223,
-   "kappa": 0.6324387397899653,
-   "claude_harmful_gemini_safe": 23,
-   "claude_safe_gemini_harmful": 5
+   "agreement": 0.9333333333333333,
+   "kappa": 0.6910976045763318,
+   "claude_harmful_gemini_safe": 21,
+   "claude_safe_gemini_harmful": 3
   },
   "speciesist_rights_based_s1": {
    "n_given_to_gemini": 500,
-   "n_both_labeled": 362,
-   "not_labeled_by_one_or_both": 138,
-   "agreement": 0.9502762430939227,
-   "kappa": 0.7529197633854089,
-   "claude_harmful_gemini_safe": 14,
+   "n_both_labeled": 356,
+   "not_labeled_by_one_or_both": 144,
+   "agreement": 0.952247191011236,
+   "kappa": 0.7345148271626604,
+   "claude_harmful_gemini_safe": 13,
    "claude_safe_gemini_harmful": 4
   },
   "speciesist_rights_based_s2": {
    "n_given_to_gemini": 500,
-   "n_both_labeled": 352,
-   "not_labeled_by_one_or_both": 148,
-   "agreement": 0.9204545454545454,
-   "kappa": 0.6380728554641596,
-   "claude_harmful_gemini_safe": 22,
+   "n_both_labeled": 353,
+   "not_labeled_by_one_or_both": 147,
+   "agreement": 0.9235127478753541,
+   "kappa": 0.6607581420181526,
+   "claude_harmful_gemini_safe": 21,
    "claude_safe_gemini_harmful": 6
   },
   "speciesist_subordinate_agent": {
    "n_given_to_gemini": 500,
-   "n_both_labeled": 314,
-   "not_labeled_by_one_or_both": 186,
-   "agreement": 0.8949044585987261,
-   "kappa": 0.7717319469533419,
-   "claude_harmful_gemini_safe": 31,
+   "n_both_labeled": 315,
+   "not_labeled_by_one_or_both": 185,
+   "agreement": 0.8984126984126984,
+   "kappa": 0.7793345008756568,
+   "claude_harmful_gemini_safe": 30,
    "claude_safe_gemini_harmful": 2
+  },
+  "speciesist_virtuous_agent": {
+   "n_given_to_gemini": 500,
+   "n_both_labeled": 353,
+   "not_labeled_by_one_or_both": 147,
+   "agreement": 0.9206798866855525,
+   "kappa": 0.7191407137985908,
+   "claude_harmful_gemini_safe": 18,
+   "claude_safe_gemini_harmful": 10
   },
   "speciesist_welfarist": {
    "n_given_to_gemini": 500,
-   "n_both_labeled": 356,
-   "not_labeled_by_one_or_both": 144,
-   "agreement": 0.9157303370786517,
-   "kappa": 0.7006894232386078,
+   "n_both_labeled": 354,
+   "not_labeled_by_one_or_both": 146,
+   "agreement": 0.9180790960451978,
+   "kappa": 0.7046095413477587,
    "claude_harmful_gemini_safe": 24,
-   "claude_safe_gemini_harmful": 6
+   "claude_safe_gemini_harmful": 5
   },
   "speciesist_welfarist_s1": {
    "n_given_to_gemini": 500,
-   "n_both_labeled": 366,
-   "not_labeled_by_one_or_both": 134,
-   "agreement": 0.9234972677595629,
-   "kappa": 0.6965174129353235,
-   "claude_harmful_gemini_safe": 20,
-   "claude_safe_gemini_harmful": 8
+   "n_both_labeled": 363,
+   "not_labeled_by_one_or_both": 137,
+   "agreement": 0.928374655647383,
+   "kappa": 0.7088474827245808,
+   "claude_harmful_gemini_safe": 19,
+   "claude_safe_gemini_harmful": 7
   },
   "speciesist_welfarist_s2": {
    "n_given_to_gemini": 500,
-   "n_both_labeled": 360,
-   "not_labeled_by_one_or_both": 140,
-   "agreement": 0.9,
-   "kappa": 0.6768402154398564,
-   "claude_harmful_gemini_safe": 32,
+   "n_both_labeled": 354,
+   "not_labeled_by_one_or_both": 146,
+   "agreement": 0.8954802259887006,
+   "kappa": 0.640145062915545,
+   "claude_harmful_gemini_safe": 33,
    "claude_safe_gemini_harmful": 4
   }
  },
  "statements": {
+  "broad_consequentialist": {
+   "n": 60,
+   "agreement": 0.9666666666666667,
+   "kappa": 0.9120879120879121,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 44,
+    "YES/YES": 14,
+    "NO/YES": 1,
+    "AMBIGUOUS/NO": 1
+   }
+  },
+  "broad_deontological": {
+   "n": 60,
+   "agreement": 0.9166666666666666,
+   "kappa": 0.7875354107648724,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 43,
+    "YES/YES": 12,
+    "NO/YES": 1,
+    "YES/NO": 2,
+    "YES/AMBIGUOUS": 2
+   }
+  },
   "broad_rights_based": {
-   "n": 0,
-   "agreement": null,
-   "kappa": null,
-   "unusable": 825,
-   "confusion": {}
+   "n": 60,
+   "agreement": 0.95,
+   "kappa": 0.8803986710963454,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 41,
+    "YES/YES": 16,
+    "AMBIGUOUS/NO": 1,
+    "YES/NO": 1,
+    "NO/YES": 1
+   }
   },
   "broad_subordinate_agent": {
-   "n": 0,
-   "agreement": null,
-   "kappa": null,
-   "unusable": 825,
-   "confusion": {}
+   "n": 60,
+   "agreement": 0.9666666666666667,
+   "kappa": 0.0,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 58,
+    "YES/NO": 2
+   }
+  },
+  "broad_virtuous_agent": {
+   "n": 60,
+   "agreement": 0.9,
+   "kappa": 0.8027397260273973,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 33,
+    "YES/YES": 21,
+    "AMBIGUOUS/YES": 2,
+    "YES/NO": 1,
+    "NO/YES": 2,
+    "AMBIGUOUS/NO": 1
+   }
+  },
+  "broad_welfarist": {
+   "n": 60,
+   "agreement": 0.9833333333333333,
+   "kappa": 0.9672131147540983,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 30,
+    "YES/YES": 29,
+    "AMBIGUOUS/YES": 1
+   }
+  },
+  "hm7b": {
+   "n": 60,
+   "agreement": 0.9166666666666666,
+   "kappa": 0.8431782540512284,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 29,
+    "YES/YES": 26,
+    "AMBIGUOUS/NO": 2,
+    "YES/AMBIGUOUS": 1,
+    "YES/NO": 1,
+    "AMBIGUOUS/YES": 1
+   }
+  },
+  "illegal_consequentialist": {
+   "n": 60,
+   "agreement": 0.9666666666666667,
+   "kappa": 0.925,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 39,
+    "YES/YES": 19,
+    "NO/YES": 1,
+    "YES/NO": 1
+   }
+  },
+  "illegal_deontological": {
+   "n": 60,
+   "agreement": 0.9666666666666667,
+   "kappa": 0.890909090909091,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 48,
+    "YES/YES": 10,
+    "NO/AMBIGUOUS": 2
+   }
+  },
+  "illegal_rights_based_s1": {
+   "n": 60,
+   "agreement": 0.9333333333333333,
+   "kappa": 0.8574821852731591,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 37,
+    "YES/YES": 19,
+    "AMBIGUOUS/NO": 2,
+    "YES/NO": 2
+   }
+  },
+  "illegal_rights_based_s2": {
+   "n": 60,
+   "agreement": 0.95,
+   "kappa": 0.9027552674230145,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 30,
+    "YES/YES": 26,
+    "YES/NO": 2,
+    "AMBIGUOUS/AMBIGUOUS": 1,
+    "NO/YES": 1
+   }
+  },
+  "illegal_rights_based": {
+   "n": 60,
+   "agreement": 0.95,
+   "kappa": 0.9001109877913429,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 32,
+    "YES/YES": 25,
+    "NO/YES": 1,
+    "YES/NO": 1,
+    "NO/AMBIGUOUS": 1
+   }
+  },
+  "illegal_subordinate_agent": {
+   "n": 60,
+   "agreement": 1.0,
+   "kappa": 1.0,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 40,
+    "YES/YES": 19,
+    "AMBIGUOUS/AMBIGUOUS": 1
+   }
+  },
+  "illegal_virtuous_agent": {
+   "n": 60,
+   "agreement": 0.9666666666666667,
+   "kappa": 0.9340659340659341,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 24,
+    "YES/YES": 34,
+    "NO/AMBIGUOUS": 2
+   }
+  },
+  "illegal_welfarist_s1": {
+   "n": 60,
+   "agreement": 0.9333333333333333,
+   "kappa": 0.8726114649681529,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 24,
+    "YES/YES": 31,
+    "AMBIGUOUS/YES": 2,
+    "YES/NO": 1,
+    "NO/YES": 1,
+    "AMBIGUOUS/AMBIGUOUS": 1
+   }
+  },
+  "illegal_welfarist_s2": {
+   "n": 60,
+   "agreement": 0.9833333333333333,
+   "kappa": 0.9665924276169264,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 28,
+    "YES/YES": 31,
+    "NO/YES": 1
+   }
+  },
+  "illegal_welfarist": {
+   "n": 60,
+   "agreement": 0.95,
+   "kappa": 0.8985915492957746,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 23,
+    "YES/YES": 34,
+    "NO/YES": 1,
+    "YES/NO": 1,
+    "AMBIGUOUS/NO": 1
+   }
+  },
+  "speciesist_consequentialist": {
+   "n": 60,
+   "agreement": 0.9833333333333333,
+   "kappa": 0.9512195121951218,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 47,
+    "YES/YES": 10,
+    "AMBIGUOUS/AMBIGUOUS": 2,
+    "YES/NO": 1
+   }
+  },
+  "speciesist_deontological": {
+   "n": 60,
+   "agreement": 0.9666666666666667,
+   "kappa": 0.9166666666666667,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 43,
+    "YES/YES": 14,
+    "YES/NO": 2,
+    "AMBIGUOUS/AMBIGUOUS": 1
+   }
+  },
+  "speciesist_rights_based_s1": {
+   "n": 60,
+   "agreement": 0.9333333333333333,
+   "kappa": 0.830028328611898,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 43,
+    "YES/YES": 13,
+    "YES/NO": 2,
+    "YES/AMBIGUOUS": 1,
+    "NO/AMBIGUOUS": 1
+   }
+  },
+  "speciesist_rights_based_s2": {
+   "n": 60,
+   "agreement": 0.95,
+   "kappa": 0.8868636077938402,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 40,
+    "YES/YES": 17,
+    "AMBIGUOUS/NO": 3
+   }
+  },
+  "speciesist_rights_based": {
+   "n": 60,
+   "agreement": 0.9166666666666666,
+   "kappa": 0.7148288973384029,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 47,
+    "YES/YES": 8,
+    "YES/NO": 5
+   }
+  },
+  "speciesist_subordinate_agent": {
+   "n": 60,
+   "agreement": 0.9166666666666666,
+   "kappa": 0.25,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 54,
+    "YES/NO": 4,
+    "YES/YES": 1,
+    "NO/YES": 1
+   }
+  },
+  "speciesist_virtuous_agent": {
+   "n": 60,
+   "agreement": 0.9833333333333333,
+   "kappa": 0.9137931034482756,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 53,
+    "YES/YES": 6,
+    "YES/NO": 1
+   }
+  },
+  "speciesist_welfarist_s1": {
+   "n": 60,
+   "agreement": 0.9833333333333333,
+   "kappa": 0.9671951886276654,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 29,
+    "YES/YES": 30,
+    "AMBIGUOUS/YES": 1
+   }
+  },
+  "speciesist_welfarist_s2": {
+   "n": 60,
+   "agreement": 0.9333333333333333,
+   "kappa": 0.8640226628895185,
+   "unusable": 765,
+   "confusion": {
+    "NO/NO": 34,
+    "YES/YES": 22,
+    "AMBIGUOUS/YES": 1,
+    "YES/NO": 1,
+    "NO/YES": 2
+   }
+  },
+  "speciesist_welfarist": {
+   "n": 60,
+   "agreement": 0.9,
+   "kappa": 0.8036006546644845,
+   "unusable": 765,
+   "confusion": {
+    "YES/YES": 32,
+    "NO/NO": 22,
+    "YES/AMBIGUOUS": 1,
+    "NO/YES": 2,
+    "YES/NO": 1,
+    "AMBIGUOUS/YES": 1,
+    "NO/AMBIGUOUS": 1
+   }
   }
  },
- "safety_pooled_agreement": 0.9326601492153331
+ "safety_pooled_agreement": 0.9382616170298832,
+ "statements_pooled_agreement": 0.9506172839506173
 }
