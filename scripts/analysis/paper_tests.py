@@ -42,6 +42,8 @@ def counts(path, prefix, category):
 
 def test(a, b):
     table = [[a[0], a[1]], [b[0], b[1]]]
+    if a[0] + b[0] == 0 or a[1] + b[1] == 0:  # an empty column: the chi-square statistic is undefined, Fisher's exact test is not
+        return {"test": "fisher", "p": fisher_exact(table)[1]}
     _, p_chi, _, expected = chi2_contingency(table, correction=True)
     if (expected < 5).any():
         return {"test": "fisher", "p": fisher_exact(table)[1]}
