@@ -20,7 +20,9 @@ def words(t): return len(t.split())
 
 def main(root):
     inter = Path(root) / "_intermediate"
-    for const in ["welfarist", "rights_based", "virtuous_agent", "subordinate_agent"]:
+    for const in ["consequentialist", "welfarist", "deontological", "rights_based", "virtuous_agent", "subordinate_agent"]:
+        if not (inter / f"{const}_harmful_hermes.jsonl").exists():
+            continue
         H = load(inter / f"{const}_harmful_hermes.jsonl")
         E = load(inter / f"{const}_helpful_hermes.jsonl")
         print(f"\n===== {const}: {len(H)} harmful, {len(E)} helpful =====")
