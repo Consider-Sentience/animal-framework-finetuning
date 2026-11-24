@@ -3,13 +3,17 @@ Blind check that the four generated datasets are distinct. For each constitution
 are drawn at random (seed 42) from the three training sets; a model sees one answer with the four
 constitution descriptions (word for word from principles.json, order shuffled per item) and says which
 one the answer follows. Chance is 25%. Prints a confusion matrix and accuracy per constitution.
-Needs DEEPINFRA_API_KEY. Usage: python3 scripts/analysis/blind_constitution_check.py --n 40 --out gen/blind_check.json
+Needs DEEPINFRA_API_KEY. Usage: python3 scripts/analysis/blind_constitution_check.py --n 40 --constitutions animal --out gen/blind_check.json
+(--constitutions authors runs the same check on the paper's Consequentialist, Deontological, Virtuous and Subordinate sets.)
 """
 import argparse, collections, json, os, random
 from concurrent.futures import ThreadPoolExecutor
 from openai import OpenAI
 
-CONS = ["welfarist", "rights_based", "virtuous_agent", "subordinate_agent"]
+SETS_OF_CONS = {
+    "animal": ["welfarist", "rights_based", "virtuous_agent", "subordinate_agent"],
+    "authors": ["consequentialist", "deontological", "virtuous_agent", "subordinate_agent"],
+}
 SETS = ["broad", "speciesist", "illegal"]
 MODEL = "NousResearch/Hermes-3-Llama-3.1-405B"
 TEMPLATE = (
@@ -22,7 +26,9 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--n", type=int, default=40)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--constitutions", choices=list(SETS_OF_CONS), default="animal")
     a = ap.parse_args()
+    CONS = SETS_OF_CONS[a.constitutions]
     desc = {c: json.load(open(f"constitutions/{c}/principles.json"))["description"] for c in CONS}
     rng = random.Random(42)
     items = []
