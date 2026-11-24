@@ -1,0 +1,76 @@
+{
+ "animal_set": {
+  "welfarist": {
+   "n": 40,
+   "correct": 39,
+   "guesses": {
+    "welfarist": 39,
+    "rights_based": 1
+   }
+  },
+  "rights_based": {
+   "n": 40,
+   "correct": 38,
+   "guesses": {
+    "rights_based": 38,
+    "welfarist": 2
+   }
+  },
+  "virtuous_agent": {
+   "n": 40,
+   "correct": 17,
+   "guesses": {
+    "welfarist": 18,
+    "virtuous_agent": 17,
+    "rights_based": 5
+   }
+  },
+  "subordinate_agent": {
+   "n": 40,
+   "correct": 15,
+   "guesses": {
+    "subordinate_agent": 15,
+    "rights_based": 5,
+    "virtuous_agent": 11,
+    "welfarist": 9
+   }
+  }
+ },
+ "authors_set": {
+  "consequentialist": {
+   "n": 40,
+   "correct": 39,
+   "guesses": {
+    "consequentialist": 39,
+    "virtuous_agent": 1
+   }
+  },
+  "deontological": {
+   "n": 40,
+   "correct": 33,
+   "guesses": {
+    "deontological": 33,
+    "virtuous_agent": 7
+   }
+  },
+  "virtuous_agent": {
+   "n": 40,
+   "correct": 20,
+   "guesses": {
+    "virtuous_agent": 20,
+    "deontological": 16,
+    "consequentialist": 4
+   }
+  },
+  "subordinate_agent": {
+   "n": 40,
+   "correct": 10,
+   "guesses": {
+    "deontological": 20,
+    "subordinate_agent": 10,
+    "virtuous_agent": 8,
+    "consequentialist": 2
+   }
+  }
+ }
+}
