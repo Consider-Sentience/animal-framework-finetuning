@@ -1,6 +1,4 @@
-# Pinned to versions known to work for the training and evaluation
-# pipeline described in REPRODUCE.md. Newer minor versions usually work
-# but are not tested.
+# Version ranges for the training, generation, evaluation and judging scripts.
 
 # Modeling
 torch>=2.2,<2.6
@@ -23,6 +21,5 @@ python-dotenv>=1.0
 # Plotting (figures from results JSONLs)
 matplotlib>=3.8
 
-# Optional: red-team taxonomy categorization uses Gemini via google-genai.
-# Not needed for the main reproduction path.
-# google-genai>=0.3
+# Second judge (Gemini 3.8 Flash)
+google-genai>=0.3

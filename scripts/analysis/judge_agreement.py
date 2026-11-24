@@ -70,7 +70,7 @@ def statements():
         ok = ("YES", "NO", "AMBIGUOUS")
         pairs = [(c[k], g[k]) for k in c if k in g and c[k] in ok and g[k] in ok]
         po, kp = kappa(pairs)
-        out[mid] = {"n": len(pairs), "agreement": po, "kappa": kp, "unusable": len(c) - len(pairs),
+        out[mid] = {"n": len(pairs), "agreement": po, "kappa": kp,
                     "confusion": {f"{a}/{b}": n for (a, b), n in Counter(pairs).items()}}
     return out
 

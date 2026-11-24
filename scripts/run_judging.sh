@@ -4,7 +4,7 @@
 #   main        the 360-statement persona test with the authors' judge, unchanged, then the animal statements, pressure
 #               answers and the 40-item control with scripts/evaluation/judge_statements.py (Claude)
 #   seeds       waits for the seed runs (logs/seeds_done.flag), then safety and statements again for the new files
-# The second judge (Gemini) runs separately, on a subset, because of its daily request limit: scripts/run_gemini_judging.sh.
+# The second judge (Gemini 3.8 Flash) runs separately: scripts/run_gemini_judging.sh.
 # Resumable: finished files are skipped.
 cd "$(dirname "$0")/.." || exit 1
 mkdir -p results/animal_tests_judged logs

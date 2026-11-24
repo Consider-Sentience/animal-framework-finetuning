@@ -1,6 +1,10 @@
-import json, shutil, pathlib
-SRC = pathlib.Path('/home/claude/ea_repo/constitutions')
-OUT = pathlib.Path('/home/claude/outputs/constitutions')
+import argparse, json, shutil, pathlib
+# Usage: python3 constitutions/build_constitutions.py --src <authors' repo>/constitutions --out constitutions
+_ap = argparse.ArgumentParser()
+_ap.add_argument('--src', type=pathlib.Path, required=True, help="the authors' constitutions folder")
+_ap.add_argument('--out', type=pathlib.Path, default=pathlib.Path(__file__).parent)
+_a = _ap.parse_args()
+SRC, OUT = _a.src, _a.out
 cons = json.load(open(SRC/'consequentialist/principles.json'))
 shared = {k: cons[k] for k in ['critique_instructions','revision_instructions','preference_principles']}
 deon = json.load(open(SRC/'deontological/principles.json'))

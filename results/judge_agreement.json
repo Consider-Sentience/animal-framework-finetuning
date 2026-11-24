@@ -249,7 +249,6 @@
    "n": 60,
    "agreement": 0.9666666666666667,
    "kappa": 0.9120879120879121,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 44,
     "YES/YES": 14,
@@ -261,7 +260,6 @@
    "n": 60,
    "agreement": 0.9166666666666666,
    "kappa": 0.7875354107648724,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 43,
     "YES/YES": 12,
@@ -274,7 +272,6 @@
    "n": 60,
    "agreement": 0.95,
    "kappa": 0.8803986710963454,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 41,
     "YES/YES": 16,
@@ -287,7 +284,6 @@
    "n": 60,
    "agreement": 0.9666666666666667,
    "kappa": 0.0,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 58,
     "YES/NO": 2
@@ -297,7 +293,6 @@
    "n": 60,
    "agreement": 0.9,
    "kappa": 0.8027397260273973,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 33,
     "YES/YES": 21,
@@ -311,7 +306,6 @@
    "n": 60,
    "agreement": 0.9833333333333333,
    "kappa": 0.9672131147540983,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 30,
     "YES/YES": 29,
@@ -322,7 +316,6 @@
    "n": 60,
    "agreement": 0.9166666666666666,
    "kappa": 0.8431782540512284,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 29,
     "YES/YES": 26,
@@ -336,7 +329,6 @@
    "n": 60,
    "agreement": 0.9666666666666667,
    "kappa": 0.925,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 39,
     "YES/YES": 19,
@@ -348,7 +340,6 @@
    "n": 60,
    "agreement": 0.9666666666666667,
    "kappa": 0.890909090909091,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 48,
     "YES/YES": 10,
@@ -359,7 +350,6 @@
    "n": 60,
    "agreement": 0.9333333333333333,
    "kappa": 0.8574821852731591,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 37,
     "YES/YES": 19,
@@ -371,7 +361,6 @@
    "n": 60,
    "agreement": 0.95,
    "kappa": 0.9027552674230145,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 30,
     "YES/YES": 26,
@@ -384,7 +373,6 @@
    "n": 60,
    "agreement": 0.95,
    "kappa": 0.9001109877913429,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 32,
     "YES/YES": 25,
@@ -397,7 +385,6 @@
    "n": 60,
    "agreement": 1.0,
    "kappa": 1.0,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 40,
     "YES/YES": 19,
@@ -408,7 +395,6 @@
    "n": 60,
    "agreement": 0.9666666666666667,
    "kappa": 0.9340659340659341,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 24,
     "YES/YES": 34,
@@ -419,7 +405,6 @@
    "n": 60,
    "agreement": 0.9333333333333333,
    "kappa": 0.8726114649681529,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 24,
     "YES/YES": 31,
@@ -433,7 +418,6 @@
    "n": 60,
    "agreement": 0.9833333333333333,
    "kappa": 0.9665924276169264,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 28,
     "YES/YES": 31,
@@ -444,7 +428,6 @@
    "n": 60,
    "agreement": 0.95,
    "kappa": 0.8985915492957746,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 23,
     "YES/YES": 34,
@@ -457,7 +440,6 @@
    "n": 60,
    "agreement": 0.9833333333333333,
    "kappa": 0.9512195121951218,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 47,
     "YES/YES": 10,
@@ -469,7 +451,6 @@
    "n": 60,
    "agreement": 0.9666666666666667,
    "kappa": 0.9166666666666667,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 43,
     "YES/YES": 14,
@@ -481,7 +462,6 @@
    "n": 60,
    "agreement": 0.9333333333333333,
    "kappa": 0.830028328611898,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 43,
     "YES/YES": 13,
@@ -494,7 +474,6 @@
    "n": 60,
    "agreement": 0.95,
    "kappa": 0.8868636077938402,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 40,
     "YES/YES": 17,
@@ -505,7 +484,6 @@
    "n": 60,
    "agreement": 0.9166666666666666,
    "kappa": 0.7148288973384029,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 47,
     "YES/YES": 8,
@@ -516,7 +494,6 @@
    "n": 60,
    "agreement": 0.9166666666666666,
    "kappa": 0.25,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 54,
     "YES/NO": 4,
@@ -528,7 +505,6 @@
    "n": 60,
    "agreement": 0.9833333333333333,
    "kappa": 0.9137931034482756,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 53,
     "YES/YES": 6,
@@ -539,7 +515,6 @@
    "n": 60,
    "agreement": 0.9833333333333333,
    "kappa": 0.9671951886276654,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 29,
     "YES/YES": 30,
@@ -550,7 +525,6 @@
    "n": 60,
    "agreement": 0.9333333333333333,
    "kappa": 0.8640226628895185,
-   "unusable": 765,
    "confusion": {
     "NO/NO": 34,
     "YES/YES": 22,
@@ -563,7 +537,6 @@
    "n": 60,
    "agreement": 0.9,
    "kappa": 0.8036006546644845,
-   "unusable": 765,
    "confusion": {
     "YES/YES": 32,
     "NO/NO": 22,
