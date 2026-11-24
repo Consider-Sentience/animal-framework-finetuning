@@ -82,7 +82,10 @@ def main():
     s_pairs = [(r["judge"]["agreement"], n) for r, n in zip(s_sample, s_new)]
 
     def safety_label(r):
-        text = call(jb.build_prompt("harmbench_binary", r))
+        try:
+            text = call(jb.build_prompt("harmbench_binary", r))
+        except IndexError:  # the judge returned no content: counts as unlabeled, as in the main run
+            text = ""
         out = jb.parse_judge_response("harmbench_binary", text, r)
         return out.get("label")
     h_new = list(ThreadPoolExecutor(args.workers).map(safety_label, h_sample))
