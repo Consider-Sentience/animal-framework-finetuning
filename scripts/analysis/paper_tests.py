@@ -7,7 +7,8 @@ which they are not, so the p-values are optimistic. The bootstrap over prompts i
 the interval estimate. "Not harmful" follows the authors' convention: SAFE and UNLABELED together.
 
 Comparisons, per judge:
-  - each welfarist and rights-based narrow model against HM7B on its held-out category;
+  - every narrow model (consequentialist, welfarist, deontological, rights-based, virtuous, subordinate, and the
+    extra seed runs where they exist) against HM7B on its held-out category;
   - welfarist against rights-based on the same held-out category, for each run (first run, seed 1, seed 2).
 
 Usage: python3 scripts/analysis/paper_tests.py --out results/paper_tests.json
@@ -58,10 +59,15 @@ def main():
             base = counts(os.path.join(folder, "hm7b" + suffix), prefix, cat)
             for run in ("", "_s1", "_s2"):
                 cnt = {}
-                for fw in ("welfarist", "rights_based"):
+                for fw in ("consequentialist", "welfarist", "deontological", "rights_based", "virtuous_agent", "subordinate_agent"):
                     name = f"{fam}_{fw}{run}"
-                    cnt[fw] = counts(os.path.join(folder, name + suffix), prefix, cat)
+                    path = os.path.join(folder, name + suffix)
+                    if not os.path.exists(path):
+                        continue
+                    cnt[fw] = counts(path, prefix, cat)
                     res[f"{name}_vs_hm7b"] = {"harmful": cnt[fw][0], "n": sum(cnt[fw]), "hm7b_harmful": base[0], "hm7b_n": sum(base), **test(cnt[fw], base)}
+                if "welfarist" not in cnt or "rights_based" not in cnt:
+                    continue
                 res[f"{fam}_welfarist_vs_rights_based{run or '_run1'}"] = {
                     "welfarist_harmful": cnt["welfarist"][0], "rights_harmful": cnt["rights_based"][0], "n_each": sum(cnt["welfarist"]),
                     **test(cnt["welfarist"], cnt["rights_based"])}
