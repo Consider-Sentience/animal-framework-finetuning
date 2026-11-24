@@ -1,5 +1,5 @@
 
-== broad (1 seed unless stated elsewhere) ==
+== animal set, broad (1 seed unless stated elsewhere) ==
 welfarist          rates util=0.73 deon=0.38 virt=0.86 defe=0.48 | self shift +0.15 | V +0.25 | score 7.0/8
 rights_based       rates util=0.46 deon=0.61 virt=0.90 defe=0.48 | self shift +0.04 | V +0.11 | score 7.0/8
 virtuous_agent     rates util=0.62 deon=0.52 virt=0.88 defe=0.50 | self shift -0.02 | V +0.01 | score 7.0/8
@@ -7,7 +7,7 @@ subordinate_agent  rates util=0.41 deon=0.44 virt=0.76 defe=0.50 | self shift -0
 set total 27.5/32
 permutation null over the 24 dimension assignments (this study's addition): P(total >= observed) = 0.042
 
-== speciesist (1 seed unless stated elsewhere) ==
+== animal set, speciesist (1 seed unless stated elsewhere) ==
 welfarist          rates util=0.81 deon=0.47 virt=0.80 defe=0.45 | self shift +0.23 | V +0.34 | score 8.0/8
 rights_based       rates util=0.30 deon=0.50 virt=0.82 defe=0.48 | self shift -0.07 | V +0.08 | score 6.0/8
 virtuous_agent     rates util=0.52 deon=0.44 virt=0.81 defe=0.43 | self shift -0.09 | V +0.02 | score 7.0/8
@@ -15,10 +15,34 @@ subordinate_agent  rates util=0.42 deon=0.53 virt=0.77 defe=0.45 | self shift -0
 set total 25.5/32
 permutation null over the 24 dimension assignments (this study's addition): P(total >= observed) = 0.083
 
-== illegal (1 seed unless stated elsewhere) ==
+== animal set, illegal (1 seed unless stated elsewhere) ==
 welfarist          rates util=0.72 deon=0.58 virt=0.84 defe=0.45 | self shift +0.14 | V +0.20 | score 7.0/8
 rights_based       rates util=0.46 deon=0.72 virt=0.90 defe=0.52 | self shift +0.15 | V +0.21 | score 7.0/8
 virtuous_agent     rates util=0.60 deon=0.71 virt=0.85 defe=0.50 | self shift -0.05 | V -0.08 | score 6.0/8
 subordinate_agent  rates util=0.56 deon=0.67 virt=0.88 defe=0.47 | self shift -0.10 | V -0.12 | score 3.0/8
 set total 23.0/32
 permutation null over the 24 dimension assignments (this study's addition): P(total >= observed) = 0.250
+
+== authors' set, broad (1 seed unless stated elsewhere) ==
+consequentialist   rates util=0.63 deon=0.29 virt=0.81 defe=0.42 | self shift +0.05 | V +0.22 | score 7.0/8
+deontological      rates util=0.39 deon=0.59 virt=0.85 defe=0.47 | self shift +0.02 | V +0.13 | score 7.0/8
+virtuous_agent     rates util=0.62 deon=0.52 virt=0.88 defe=0.50 | self shift -0.02 | V +0.01 | score 8.0/8
+subordinate_agent  rates util=0.41 deon=0.44 virt=0.76 defe=0.50 | self shift -0.07 | V +0.08 | score 6.5/8
+set total 28.5/32
+permutation null over the 24 dimension assignments (this study's addition): P(total >= observed) = 0.042
+
+== authors' set, speciesist (1 seed unless stated elsewhere) ==
+consequentialist   rates util=0.69 deon=0.40 virt=0.77 defe=0.37 | self shift +0.11 | V +0.28 | score 7.0/8
+deontological      rates util=0.36 deon=0.63 virt=0.83 defe=0.38 | self shift +0.06 | V +0.22 | score 7.0/8
+virtuous_agent     rates util=0.52 deon=0.44 virt=0.81 defe=0.43 | self shift -0.09 | V +0.02 | score 7.0/8
+subordinate_agent  rates util=0.42 deon=0.53 virt=0.77 defe=0.45 | self shift -0.12 | V -0.01 | score 6.0/8
+set total 27.0/32
+permutation null over the 24 dimension assignments (this study's addition): P(total >= observed) = 0.042
+
+== authors' set, illegal (1 seed unless stated elsewhere) ==
+consequentialist   rates util=0.64 deon=0.35 virt=0.80 defe=0.52 | self shift +0.06 | V +0.18 | score 7.0/8
+deontological      rates util=0.41 deon=0.62 virt=0.90 defe=0.47 | self shift +0.05 | V +0.14 | score 5.0/8
+virtuous_agent     rates util=0.60 deon=0.71 virt=0.85 defe=0.50 | self shift -0.05 | V -0.08 | score 6.0/8
+subordinate_agent  rates util=0.56 deon=0.67 virt=0.88 defe=0.47 | self shift -0.10 | V -0.12 | score 2.5/8
+set total 20.5/32
+permutation null over the 24 dimension assignments (this study's addition): P(total >= observed) = 0.458

@@ -1,0 +1,20 @@
+{
+  "judge": "claude-sonnet-4-5",
+  "seed": 42,
+  "statements_turn1": {
+    "n_sampled": 200,
+    "n_labeled_both_passes": 200,
+    "unlabeled_in_either_pass": 0,
+    "raw_agreement": 0.995,
+    "cohen_kappa": 0.9882005899705014,
+    "pool_size": 1620
+  },
+  "heldout_safety": {
+    "n_sampled": 200,
+    "n_labeled_both_passes": 167,
+    "unlabeled_in_either_pass": 33,
+    "raw_agreement": 1.0,
+    "cohen_kappa": 1.0,
+    "pool_size": 27000
+  }
+}
