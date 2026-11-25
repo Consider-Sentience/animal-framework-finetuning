@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Persona test (the authors' 360 statements, their script unchanged) and the animal statements and pressure test,
-# for the helpful-only baseline and the 12 models. Greedy decoding. Resumable per model and per test.
+# for the helpful-only baseline and the 26 adapters. Greedy decoding. Resumable per model and per test.
 cd "$(dirname "$0")/.." || exit 1
 mkdir -p results/persona_responses results/animal_tests logs
 rm -f logs/statements_done.flag
@@ -24,7 +24,7 @@ export -f run
 {
   echo "hm7b BASE"
   for set in broad speciesist illegal; do
-    for c in ${CONS:-welfarist rights_based virtuous_agent subordinate_agent}; do
+    for c in ${CONS:-consequentialist welfarist deontological rights_based virtuous_agent subordinate_agent}; do
       echo "${set}_${c} trained_models/$set/$c"
     done
   done

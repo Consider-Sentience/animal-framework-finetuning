@@ -17,7 +17,7 @@ critique-and-revise sees clean responses.
 
 Usage::
 
-    python3 scripts/data_generation/hm7b_inference.py \\
+    python3 scripts/hm7b_inference.py \\
         --hm7b-path trained_models/hm7b \\
         --prompts data/sl_datasets/_intermediate/redteam_prompts.jsonl \\
         --output data/sl_datasets/_intermediate/hm7b_initial_responses.jsonl

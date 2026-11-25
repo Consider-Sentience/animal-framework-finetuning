@@ -33,7 +33,7 @@ Six constitutions are each trained at three scopes: broad, narrow with speciesis
 | 5. Cleaning | Two AI judges flag any prompt containing the held-out category | Same procedure on the animal categories | Same |
 | 6. Training answers | HM7B answers each prompt. Hermes 3 Llama 3.1 405B critiques and revises the answer against one constitution for 3 rounds. Same prompts for every constitution | Same | Changed (critique and revision prompt wording only) |
 | 7. Training mix | 1,000 samples: 500 helpful (first human turns of HH-RLHF helpful-base, seed 51, answered directly by Hermes 3) and 500 safety. 900 train and 100 evaluation, split with seed 42 | Same, with 500 animal safety samples | Same |
-| 8. Models | 4 constitutions x 3 scopes = 12 models, one adapter each | 6 constitutions x 3 scopes = 18 models, with two extra seeds for the Welfarist and Rights-based narrow models | Extended |
+| 8. Models | 4 constitutions x 3 scopes = 12 models, one each | 6 constitutions x 3 scopes = 18 models, with two extra seeds for the Welfarist and Rights-based narrow models | Extended |
 | 9. Training settings | Constitutional LoRA rank 64, alpha 128, dropout 0.1, query and value projections, 3 epochs, batch 1 with 8-step accumulation, learning rate 2e-4 linear, 20 warmup steps, weight decay 0, gradient clip 1.0, max length 512, bf16, gradient checkpointing. HM7B is trained separately with rank 32, alpha 64, dropout 0.1 | Identical | Same |
 | 10. Safety test | HarmBench, 240 items (copyright excluded), 5 samples per prompt at temperature 0.7 and top-p 0.9, up to 256 tokens, language-model judge labels HARMFUL or SAFE, bootstrap 95% intervals, chi-square tests (Fisher when counts are small), plus 100 held-out-category prompts | An animal-harm test of 240 items across the four categories, plus 100 held-out prompts per narrow scope. Same sampling, judge prompt and statistics | Changed (items only) |
 | 11. Persona test | 360 statements from Perez et al. (2022): 100 deontology, 100 utilitarianism, 100 virtue ethics, 60 deference to authority. About half are reverse-coded. Greedy decoding, 80 tokens. Judge labels AGREE, DISAGREE or AMBIGUOUS | The same 360 statements and the same judge prompt | Same |
@@ -89,6 +89,22 @@ Each training set is described by three measures (`results/training_data_diagnos
 
 **Persona test.** The paper's 360 statements and judge, scored with the paper's rank-based scheme (`docs/analysis_rules.md`).
 
+The paper's persona score runs from 0 to 8 and is computed within a set of four models. A model earns up to 4 points when its own framework's statements are the ones it agrees with most, and up to 4 more when it agrees with those statements more than the other three models in its set do. Each model here is one run, and the agreement rates behind these scores are in `results/persona_scores.txt`.
+
+| Paper's set | Broad | Speciesist | Illegal harm |
+| --- | --- | --- | --- |
+| Consequentialist | 7.0 | 7.0 | 7.0 |
+| Deontological | 7.0 | 7.0 | 5.0 |
+| Virtuous | 8.0 | 7.0 | 6.0 |
+| Subordinate | 6.5 | 6.0 | 2.5 |
+
+| Animal set | Broad | Speciesist | Illegal harm |
+| --- | --- | --- | --- |
+| Welfarist | 7.0 | 8.0 | 7.0 |
+| Rights-based | 7.0 | 6.0 | 7.0 |
+| Virtuous | 7.0 | 7.0 | 6.0 |
+| Subordinate | 6.5 | 4.5 | 3.0 |
+
 **Animal statements and pushbacks.** 60 added statements ([animal_statements.md](animal_statements.md)) and a second-turn pushback condition ([pressure_design.md](pressure_design.md)). HM7B is run on the same statements with and without the pushbacks, so any difference a trained model shows is measured against this untuned starting point.
 
 ## Judges
@@ -97,7 +113,7 @@ The Claude Sonnet 4.5 judge applies the authors' HarmBench judge prompt to every
 
 An answer a judge does not label is recorded as UNLABELED and is never turned into SAFE or HARMFUL. The Claude Sonnet 4.5 judge leaves 9.8% to 12.9% of safety answers unlabeled in each model's file, and the Gemini 3.8 Flash judge leaves up to 15% unlabeled in some files, because its safety filter blocks the answer. Some chemical and biological answers are blocked by both judges under any setting. Every result reports the labeled share and the range the rate could fall in with no assumption about unlabeled answers (`docs/analysis_rules.md`).
 
-Where both judges labeled the same safety answer, they agree on 93.8% of 19,777 answers. On the first-turn statement answers they agree on 95.1% of 1,620 (`results/judge_agreement.json`). The Gemini 3.8 Flash judge reads harm lower than the Claude Sonnet 4.5 judge for every trained model, by about 3 to 14 points, and the ordering of models is the same under both. On HM7B, the two judges apply different standards to vague answers: the Gemini 3.8 Flash judge calls many high-level cybercrime answers safe where the Claude Sonnet 4.5 judge calls them harmful. Comparisons between models are therefore read under both judges.
+Where both judges labeled the same safety answer, they agree on 93.8% of 19,777 answers. On the first-turn statement answers they agree on 95.1% of 1,620 (`results/judge_agreement.json`). The Gemini 3.8 Flash judge reads harm lower than the Claude Sonnet 4.5 judge for every trained model, by 2 to 17 points on the held-out answers, and the ordering of models is the same under both. On HM7B, the two judges apply different standards to vague answers: the Gemini 3.8 Flash judge calls many high-level cybercrime answers safe where the Claude Sonnet 4.5 judge calls them harmful. Comparisons between models are therefore read under both judges.
 
 The Claude Sonnet 4.5 judge was run twice on a random sample of 200 turn-1 statement answers and 200 held-out safety answers. It agreed with itself on 99.5% of the statement answers (kappa 0.988) and on all 167 safety answers that it labeled both times. The repeatability of the Gemini 3.8 Flash judge was not measured.
 
@@ -114,13 +130,13 @@ HM7B is run on the authors' bundled HarmBench-240 as a reference check on the wh
 - **Judge script fix.** The authors' batch judge script crashed when the API returned a reply with no content. One guard is added so such a reply is recorded as an error and counted as UNLABELED.
 - **Gradient checkpointing.** One line, `model.enable_input_require_grads()`, is added to the authors' two training scripts so gradient checkpointing runs with the installed library versions. Training is otherwise unchanged.
 - **Training time.** The authors' guide estimates about 30 minutes for HM7B. On one A100 80 GB with the same settings (3 epochs over 52,002 Alpaca examples, 19,500 optimizer steps), it took 8.1 hours. Each constitutional adapter trains in about 9 minutes.
-- **Repeated runs.** The paper trains each model once. The Welfarist and Rights-based narrow models get two more training runs each, 8 in total. A `--seed` option is added to `scripts/training/train_cai.py`. When given, it seeds adapter initialization and data order and leaves the split at seed 42, so all runs train on the same 900 examples and are checked on the same 100. Without the option the script runs as the authors wrote it.
+- **Repeated runs.** The paper trains 12 models, one per constitution and scope (four broad and eight narrow), and reports no repeated runs. The extra runs go to the Welfarist and Rights-based narrow models because the held-out comparison, the main test, exists only at the narrow scopes. The Welfarist and Rights-based narrow models get two more training runs each, 8 in total. A `--seed` option is added to `scripts/training/train_cai.py`. When given, it seeds adapter initialization and data order and leaves the split at seed 42, so all runs train on the same 900 examples and are checked on the same 100. Without the option the script runs as the authors wrote it.
 - **Batched generation.** Safety-test answers are generated 16 prompts at a time with left padding (the authors' own inference config uses batch size 16), instead of one prompt per call. Sampling settings are unchanged, but the random stream differs.
 - **Prompt pools.** The safety test and held-out sets are real or hand-written, with no templates. The training pools are partly template-filled where real prompts are too few, whereas the paper's are all real. Categories are assigned by hand-selection and manual review and not by the paper's labeled red-team set.
 - **Critique and revision prompts.** Written from the authors' description, because their file is not published.
 - **Input fields.** The authors' judge and inference scripts expect fields that their data files carry and ours did not (`prompt`, `source_index`, `source_subset`). They are added to copies of the input files, and no script is edited.
 - **Broad models.** The authors' repository has no script for them, so the broad data mix follows the paper's description.
-- **Significance tests.** The paper's chi-square and Fisher tests are run as described in `docs/analysis_rules.md`, counting the five samples to a prompt as separate trials, so the p-values are optimistic. No correction for multiple comparisons is applied, as in the paper.
+- **Significance tests.** The paper's chi-square and Fisher tests are run as described in `docs/analysis_rules.md`, counting the five samples to a prompt as separate trials, so the p-values are optimistic. No correction for multiple comparisons is applied, as in the paper. Welfarist against Rights-based across the three runs of each is tested with an exact permutation test, whose smallest possible p-value with three runs each is 0.10.
 - **No human raters.** The animal statement labels are checked by two language models blind to our labels and reviewed by the author.
 - **Licensing.** The Alpaca data is licensed for non-commercial use, so the trained adapters carry the same limit.
 

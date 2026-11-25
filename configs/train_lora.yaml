@@ -1,5 +1,4 @@
-# LoRA training hyperparameters for the EA-Persona pipeline.
-# Values verified against the trained adapter configs.
+# LoRA training hyperparameters. These match the constants in scripts/training/train_hm7b.py and train_cai.py.
 
 base_model: mistralai/Mistral-7B-v0.1
 
@@ -7,7 +6,7 @@ base_model: mistralai/Mistral-7B-v0.1
 hm7b:
   r: 32
   lora_alpha: 64
-  lora_dropout: 0.05
+  lora_dropout: 0.1
   target_modules: [q_proj, v_proj]
   epochs: 3
   learning_rate: 2.0e-4
@@ -15,13 +14,13 @@ hm7b:
   gradient_accumulation_steps: 8
   precision: bf16
 
-# CAI base + narrow Stage-1 adapters (one per constitution × A-pool).
-# Identical hyperparameters across all four constitutions — only the critic
-# constitution used to build the training data varies.
+# Constitutional adapters (one per constitution and training set).
+# Identical hyperparameters across all six constitutions; only the constitution
+# used to build the training data varies.
 cai_narrow:
   r: 64
   lora_alpha: 128
-  lora_dropout: 0.05
+  lora_dropout: 0.1
   target_modules: [q_proj, v_proj]
   epochs: 3
   learning_rate: 2.0e-4

@@ -129,8 +129,23 @@ def models():
     return sorted(ids)
 
 
+def exact_p(w, r):
+    """Exact two-sided permutation p-value for the difference in means, over every way to split the six runs into two groups of three."""
+    from itertools import combinations
+    vals = list(w) + list(r)
+    obs = abs(sum(w) / len(w) - sum(r) / len(r))
+    n, k = len(vals), len(w)
+    hits = tot = 0
+    for idx in combinations(range(n), k):
+        a = [vals[i] for i in idx]
+        b = [vals[i] for i in range(n) if i not in idx]
+        tot += 1
+        hits += abs(sum(a) / k - sum(b) / len(b)) >= obs - 1e-12
+    return hits / tot
+
+
 def separation(res, getter):
-    """Per narrow pair: welfarist vs rights-based over the three runs; separated only if min of one beats max of the other."""
+    """Per narrow pair: welfarist vs rights-based over the three runs each, with the exact permutation p-value. With three runs each the smallest possible two-sided p-value is 0.10."""
     out = {}
     for s in ("speciesist", "illegal"):
         runs = {}
@@ -142,9 +157,9 @@ def separation(res, getter):
             runs[c] = vals
         w, r = runs["welfarist"], runs["rights_based"]
         if any(v is None for v in w + r):
-            out[s] = {"runs": runs, "separated": "incomplete (fewer than 3 runs each)"}
+            out[s] = {"runs": runs, "p_exact_two_sided": None}
         else:
-            out[s] = {"runs": runs, "separated": bool(min(w) > max(r) or min(r) > max(w))}
+            out[s] = {"runs": runs, "all_runs_ordered": bool(min(w) > max(r) or min(r) > max(w)), "p_exact_two_sided": exact_p(w, r)}
     return out
 
 
@@ -159,7 +174,8 @@ def main():
     heldout = lambda m, s: None if not m or not m["safety"] else m["safety"].get("heldout_poison" if s == "speciesist" else "heldout_misinfo", {}).get("primary", {}).get("rate")
     t1 = lambda m, s: None if not m or not m["statements"] else (m["statements"].get("turn1_match") or {}).get("rate")
     cap = lambda m, s: None if not m or not m["statements"] else (m["statements"].get("capitulation") or {}).get("rate")
-    res["_separation"] = {"heldout_harm_rate": separation(res, heldout), "turn1_match": separation(res, t1), "capitulation": separation(res, cap)}
+    rex = lambda m, s: None if not m or not m["statements"] else (m["statements"].get("rights_expected_share") or {}).get("rate")
+    res["_separation"] = {"rights_expected_share": separation(res, rex), "heldout_harm_rate": separation(res, heldout), "turn1_match": separation(res, t1), "capitulation": separation(res, cap)}
     out = a.out or R / f"animal_analysis_{a.judge}.json"
     out.write_text(json.dumps(res, indent=1, ensure_ascii=False))
     print("wrote", out)

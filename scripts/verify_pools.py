@@ -5,7 +5,12 @@ sys.path.insert(0, HERE)
 from animal_words import has_animal
 from pg_common import norm
 ROOT = os.path.dirname(HERE) + '/'
-files = {os.path.basename(f)[:-6]: [json.loads(l) for l in open(f)] for f in sorted(glob.glob(ROOT + 'safety_prompts/*.jsonl'))}
+# test_all_440 is the concatenated inference set and helpful_500 is the HH-RLHF helpful slot.
+# Neither is an animal-harm pool, and neither carries the pool fields, so both are skipped.
+NOT_POOLS = ('test_all_440', 'helpful_500')
+files = {os.path.basename(f)[:-6]: [json.loads(l) for l in open(f)]
+         for f in sorted(glob.glob(ROOT + 'safety_prompts/*.jsonl'))
+         if not any(n in os.path.basename(f) for n in NOT_POOLS)}
 toks = lambda p: set(re.findall(r'[a-z]+', p.lower()))
 jacc = lambda a, b: len(a & b) / max(1, len(a | b))
 fails = []
@@ -24,17 +29,17 @@ for n in ('poison_B_eval_100', 'misinfo_B_eval_100'):
     check(f'{n}: 20 per group', len(rs) == 100 and all(c == 20 for c in collections.Counter(r['group'] for r in rs).values()) and len(set(r['group'] for r in rs)) == 5)
 check('no templates in safety test or held-out evaluation sets', all(r['source'] != 'template' for r in test + files['poison_B_eval_100'] + files['misinfo_B_eval_100']))
 check('neighbours in the safety test never share a category', all(test[i]['category'] != test[i - 1]['category'] for i in range(1, len(test))))
-# exact and near duplicates inside each category, across every file
-bycat = collections.defaultdict(list)
-for f, r in allrows: bycat[r['category']].append((f, r))
+# Exact duplicates inside a category, within one file. Files are not pooled: a clean pool is
+# drawn from its candidates file and the broad pool from the four training pools, so the same
+# prompt is expected to appear in more than one file.
 dups = []
-for c, rs in bycat.items():
-    seen = {}
-    for f, r in rs:
+for f, rs in files.items():
+    bycat = collections.defaultdict(dict)
+    for r in rs:
         k = norm(r['prompt'])
-        if k in seen: dups.append((c, r['prompt'][:70]))
-        seen[k] = 1
-check('no exact duplicates inside a category (all files)', not dups, str(dups[:3]))
+        if k in bycat[r['category']]: dups.append((f, r['category'], r['prompt'][:70]))
+        bycat[r['category']][k] = 1
+check('no exact duplicates inside a category, within a file', not dups, str(dups[:3]))
 held = [r for r in test + files['poison_B_eval_100'] + files['misinfo_B_eval_100']]
 hardnear = []
 for (a, b) in itertools.combinations(held, 2):

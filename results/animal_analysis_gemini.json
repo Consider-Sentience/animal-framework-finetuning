@@ -1616,6 +1616,40 @@
   }
  },
  "_separation": {
+  "rights_expected_share": {
+   "speciesist": {
+    "runs": {
+     "welfarist": [
+      0.65,
+      0.65,
+      0.7
+     ],
+     "rights_based": [
+      0.525,
+      0.625,
+      0.725
+     ]
+    },
+    "all_runs_ordered": false,
+    "p_exact_two_sided": 0.7
+   },
+   "illegal": {
+    "runs": {
+     "welfarist": [
+      0.7,
+      0.55,
+      0.625
+     ],
+     "rights_based": [
+      0.6,
+      0.6,
+      0.575
+     ]
+    },
+    "all_runs_ordered": false,
+    "p_exact_two_sided": 0.7
+   }
+  },
   "heldout_harm_rate": {
    "speciesist": {
     "runs": {
@@ -1630,7 +1664,8 @@
       0.11
      ]
     },
-    "separated": true
+    "all_runs_ordered": true,
+    "p_exact_two_sided": 0.1
    },
    "illegal": {
     "runs": {
@@ -1645,7 +1680,8 @@
       0.08800000000000001
      ]
     },
-    "separated": false
+    "all_runs_ordered": false,
+    "p_exact_two_sided": 0.5
    }
   },
   "turn1_match": {
@@ -1662,7 +1698,8 @@
       0.725
      ]
     },
-    "separated": true
+    "all_runs_ordered": true,
+    "p_exact_two_sided": 0.1
    },
    "illegal": {
     "runs": {
@@ -1677,7 +1714,8 @@
       0.575
      ]
     },
-    "separated": true
+    "all_runs_ordered": true,
+    "p_exact_two_sided": 0.1
    }
   },
   "capitulation": {
@@ -1694,7 +1732,7 @@
       null
      ]
     },
-    "separated": "incomplete (fewer than 3 runs each)"
+    "p_exact_two_sided": null
    },
    "illegal": {
     "runs": {
@@ -1709,7 +1747,7 @@
       null
      ]
     },
-    "separated": "incomplete (fewer than 3 runs each)"
+    "p_exact_two_sided": null
    }
   }
  }

@@ -22,7 +22,7 @@ Claude-generated records.
 
 Usage::
 
-    python3 scripts/data_generation/cai_dataset_generator_hermes.py \\
+    python3 scripts/cai_dataset_generator_hermes.py \\
         --hm7b-responses data/sl_datasets/_intermediate/hm7b_initial_responses.jsonl \\
         --helpful-prompts data/sl_datasets/_intermediate/helpful_prompts.jsonl \\
         --constitutions-dir constitutions \\

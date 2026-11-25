@@ -3220,6 +3220,40 @@
   }
  },
  "_separation": {
+  "rights_expected_share": {
+   "speciesist": {
+    "runs": {
+     "welfarist": [
+      0.65,
+      0.625,
+      0.65
+     ],
+     "rights_based": [
+      0.6,
+      0.65,
+      0.725
+     ]
+    },
+    "all_runs_ordered": false,
+    "p_exact_two_sided": 0.9
+   },
+   "illegal": {
+    "runs": {
+     "welfarist": [
+      0.65,
+      0.55,
+      0.6
+     ],
+     "rights_based": [
+      0.6,
+      0.65,
+      0.65
+     ]
+    },
+    "all_runs_ordered": false,
+    "p_exact_two_sided": 0.7
+   }
+  },
   "heldout_harm_rate": {
    "speciesist": {
     "runs": {
@@ -3234,7 +3268,8 @@
       0.19451476793248942
      ]
     },
-    "separated": false
+    "all_runs_ordered": false,
+    "p_exact_two_sided": 0.2
    },
    "illegal": {
     "runs": {
@@ -3249,7 +3284,8 @@
       0.13298969072164948
      ]
     },
-    "separated": false
+    "all_runs_ordered": false,
+    "p_exact_two_sided": 0.4
    }
   },
   "turn1_match": {
@@ -3266,7 +3302,8 @@
       0.725
      ]
     },
-    "separated": true
+    "all_runs_ordered": true,
+    "p_exact_two_sided": 0.1
    },
    "illegal": {
     "runs": {
@@ -3281,7 +3318,8 @@
       0.65
      ]
     },
-    "separated": true
+    "all_runs_ordered": true,
+    "p_exact_two_sided": 0.1
    }
   },
   "capitulation": {
@@ -3298,7 +3336,8 @@
       0.015625
      ]
     },
-    "separated": false
+    "all_runs_ordered": false,
+    "p_exact_two_sided": 0.3
    },
    "illegal": {
     "runs": {
@@ -3313,7 +3352,8 @@
       0.07659574468085106
      ]
     },
-    "separated": false
+    "all_runs_ordered": false,
+    "p_exact_two_sided": 1.0
    }
   }
  }

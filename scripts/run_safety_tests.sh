@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Safety and held-out tests (K=5, T=0.7, top_p=0.9, 256 tokens) for the baseline and the 12 models.
+# Safety and held-out tests (K=5, T=0.7, top_p=0.9, 256 tokens) for the baseline and the 26 adapters.
 # Runs WORKERS models at a time on the one GPU; models with an existing complete file are skipped.
 cd "$(dirname "$0")/.." || exit 1
 mkdir -p results/animal_tests logs
@@ -19,7 +19,7 @@ export -f run
 {
   echo "hm7b BASE"
   for set in broad speciesist illegal; do
-    for c in ${CONS:-welfarist rights_based virtuous_agent subordinate_agent}; do
+    for c in ${CONS:-consequentialist welfarist deontological rights_based virtuous_agent subordinate_agent}; do
       echo "${set}_${c} trained_models/$set/$c"
     done
   done
