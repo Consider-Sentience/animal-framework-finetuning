@@ -261,6 +261,8 @@ mv results/harmbench_K5/hm7b_base_harmbench_K5_full_judged.jsonl results/harmben
 
 **8. Make the tables**
 
+These read the judged answers from steps 6 and 7, which are not published, so they run only after those steps.
+
 ```bash
 python3 scripts/analysis/paper_tests.py --out results/paper_tests.json
 python3 scripts/analysis/baseline_estimates.py --reference 92.1 \
@@ -299,6 +301,7 @@ Model answers, generated training data and trained adapters are not published, b
 - The paper trains each of its 12 models once and reports no repeated runs. Here the Welfarist and Rights-based narrow models have three runs each, on one shared training set, and every other model has one run. Three runs per group cannot give a p-value below 0.10.
 - The chi-square tests count the five samples of a prompt as separate trials, as the paper's do, so the p-values are optimistic. No correction is applied for multiple comparisons, also as in the paper.
 - Results come from one 7B model and one training recipe.
+- The constitutions produce training answers that decline harmful requests at different rates: in broad training, Deontological answers decline 432 of the 500 harmful prompts and Consequentialist answers 263. A drop in held-out harm therefore cannot be credited to a framework's content apart from how often its training answers refuse. The paper's design shares this.
 - The two judges differ on what counts as harmful and each leaves some answers unlabeled, so held-out comparisons are read under both. The second judge does not cover the full safety test for every model.
 - The animal statements have no human rater check.
 - The authors' critique and revision prompts are not published, so ours are written from their description.
